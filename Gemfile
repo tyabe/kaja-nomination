@@ -1,7 +1,7 @@
 source :rubygems
 
 # Server requirements
-# gem 'thin' # or mongrel
+gem 'thin' # or mongrel
 # gem 'trinidad', :platform => 'jruby'
 
 # Project requirements
@@ -9,17 +9,34 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
+gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'compass'
 gem 'erubis', "~> 2.7.0"
 gem 'mini_record'
-gem 'sqlite3'
-
-# Test requirements
-gem 'rspec', :group => "test"
-gem 'rack-test', :require => "rack/test", :group => "test"
 
 # Padrino Stable Gem
 gem 'padrino', '0.10.7'
+gem 'padrino-contrib'
+
+group :production do
+  gem 'pg'
+  gem 'dalli'
+end
+
+group :development do
+  gem 'sqlite3'
+  gem 'pry-padrino'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+  gem 'rspec-padrino'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'faker'
+  gem 'fabrication'
+end
 
 # Or Padrino Edge
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
