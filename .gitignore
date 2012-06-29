@@ -1,3 +1,4 @@
+# Padrino
 .DS_Store
 log/**/*
 tmp/**/*
@@ -5,3 +6,13 @@ bin/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
+public/stylesheets/application.css
+db/*.db
+
+# rvm
+.rvmrc
+.rvmrc.*
+
+# rbenv
+.rbenv-version
+.rbenv-gemsets
