@@ -5,3 +5,4 @@
 :script: jquery
 :renderer: erb
 :stylesheet: compass
+:admin_renderer: erb
