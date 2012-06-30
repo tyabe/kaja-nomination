@@ -18,7 +18,20 @@ class KajaNomination < Padrino::Application
     enable :caching
   end
 
-  enable :sessions
+  use OmniAuth::Builder do
+    provider :github, ENV['GITHUB_KEY']||Setting.github.key, ENV['GITHUB_SECRET']||Setting.github.secret
+  end
+
+  get :auth, map: '/auth/:provider/callback' do
+    auth    = request.env["omniauth.auth"]
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
+    session[:user_id] = user.id
+    redirect '/'
+  end
+
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
 
   not_found do
     render 'errors/not_found'
