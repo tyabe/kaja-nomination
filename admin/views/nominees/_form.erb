@@ -1,0 +1,30 @@
+<div class="group">
+  <%= f.label :name %><%= f.error_message_on :name %>
+  <%= f.text_field :name, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :image_url %><%= f.error_message_on :image_url %>
+  <%= f.text_field :image_url, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :description %><%= f.error_message_on :description %>
+  <%= f.text_field :description, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :github_id %><%= f.error_message_on :github_id %>
+  <%= f.text_field :github_id, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+<div class="group">
+  <%= f.label :twitter_id %><%= f.error_message_on :twitter_id %>
+  <%= f.text_field :twitter_id, :class => :text_field %>
+  <span class="description">Ex: a simple text</span>
+</div>
+
+<div class="group navform wat-cf">
+  <%= f.submit pat(:save), :class => :button %>
+  <%= f.submit pat(:cancel), :onclick => "window.location='#{url(:nominees, :index)}';return false", :class => :button %>
+</div>

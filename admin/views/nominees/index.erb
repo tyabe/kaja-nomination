@@ -1,0 +1,42 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to pat(:list), url(:nominees, :index) %></li>
+      <li><%= link_to pat(:new), url(:nominees, :new) %></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h2 class="title"><%= pat(:all) %> <% mt(:nominees) %></h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th class="first"><%= mat(:nominee, :id) %></th>
+          <th><%= mat(:nominee, :name) %></th>
+          <th><%= mat(:nominee, :image_url) %></th>
+          <th><%= mat(:nominee, :description) %></th>
+          <th><%= mat(:nominee, :github_id) %></th>
+          <th><%= mat(:nominee, :twitter_id) %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @nominees.each do |nominee| %>
+        <tr>
+          <td class="first"><%= nominee.id %></td>
+          <td><%= nominee.name %></td>
+          <td><%= nominee.image_url %></td>
+          <td><%= nominee.description %></td>
+          <td><%= nominee.github_id %></td>
+          <td><%= nominee.twitter_id %></td>
+          <td class="last">
+            <%= button_to pat(:edit), url(:nominees, :edit, :id => nominee.id), :method => :get, :class => :button_to %> |
+            <%= button_to pat(:delete), url(:nominees, :destroy, :id => nominee.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, partial("base/sidebar") %>
