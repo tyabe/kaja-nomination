@@ -6,4 +6,7 @@ class Nominee < ActiveRecord::Base
   # Validations
   validates_presence_of :name, :description
 
+  # Referenced
+  has_many :ballots
+
 end

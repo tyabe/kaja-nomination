@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   # Validations
   validates_presence_of :name, :screen_name
 
+  # Referenced
+  has_many :ballots
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.uid = auth["uid"]
