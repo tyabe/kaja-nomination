@@ -16,3 +16,6 @@ db/*.db
 # rbenv
 .rbenv-version
 .rbenv-gemsets
+
+# config file
+config/application.yml

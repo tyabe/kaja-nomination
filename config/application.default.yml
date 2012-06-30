@@ -1,0 +1,13 @@
+defaults: &defaults
+  github:
+    key: "your_github_key"
+    secret: "your_github_secret"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
