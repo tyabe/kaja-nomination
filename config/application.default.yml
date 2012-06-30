@@ -1,4 +1,8 @@
 defaults: &defaults
+  site:
+    title: "Vote for RubyKaja"
+    description: |
+      Description of This Site.
   github:
     key: "your_github_key"
     secret: "your_github_secret"

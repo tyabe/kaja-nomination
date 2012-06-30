@@ -1,0 +1,10 @@
+<h1><%= Setting.site.title %></h1>
+<div>
+  <%= Setting.site.description %>
+</div>
+
+<div>
+  <% @nominees.each do |nominee| -%>
+    <%= partial 'nominees/nominee', object: nominee %>
+  <% end -%>
+</div>
