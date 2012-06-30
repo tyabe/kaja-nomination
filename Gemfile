@@ -9,6 +9,7 @@ gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
 gem 'settingslogic'
+gem 'octokit'
 
 # Component requirements
 gem 'bcrypt-ruby', :require => "bcrypt"

@@ -6,7 +6,7 @@ Admin.controllers :nominees do
   end
 
   get :new do
-    @nominee = Nominee.new
+    @nominee = params[:query].present? ? Nominee.search(params[:query]) : Nominee.new
     render 'nominees/new'
   end
 
@@ -14,7 +14,7 @@ Admin.controllers :nominees do
     @nominee = Nominee.new(params[:nominee])
     if @nominee.save
       flash[:notice] = 'Nominee was successfully created.'
-      redirect url(:nominees, :edit, :id => @nominee.id)
+      redirect url(:nominees, :index)
     else
       render 'nominees/new'
     end
@@ -29,7 +29,7 @@ Admin.controllers :nominees do
     @nominee = Nominee.find(params[:id])
     if @nominee.update_attributes(params[:nominee])
       flash[:notice] = 'Nominee was successfully updated.'
-      redirect url(:nominees, :edit, :id => @nominee.id)
+      redirect url(:nominees, :index)
     else
       render 'nominees/edit'
     end

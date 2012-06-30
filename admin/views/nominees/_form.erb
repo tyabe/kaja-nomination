@@ -1,27 +1,27 @@
 <div class="group">
   <%= f.label :name %><%= f.error_message_on :name %>
   <%= f.text_field :name, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <span class="description">Name of nominee</span>
 </div>
 <div class="group">
   <%= f.label :image_url %><%= f.error_message_on :image_url %>
   <%= f.text_field :image_url, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <span class="description">Avatar Image URL</span>
 </div>
 <div class="group">
   <%= f.label :description %><%= f.error_message_on :description %>
-  <%= f.text_field :description, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <%= f.text_area :description, :class => :text_area %>
+  <span class="description">Reason for nomination</span>
 </div>
 <div class="group">
   <%= f.label :github_id %><%= f.error_message_on :github_id %>
   <%= f.text_field :github_id, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <span class="description">Github Account ID</span>
 </div>
 <div class="group">
   <%= f.label :twitter_id %><%= f.error_message_on :twitter_id %>
   <%= f.text_field :twitter_id, :class => :text_field %>
-  <span class="description">Ex: a simple text</span>
+  <span class="description">Twitter Account ID</span>
 </div>
 
 <div class="group navform wat-cf">
