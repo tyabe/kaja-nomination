@@ -6,5 +6,11 @@
 <div>
   <% @nominees.each do |nominee| -%>
     <%= partial 'nominees/nominee', object: nominee %>
+    <div>
+      <h4>Supporters</h4>
+      <% nominee.ballots.each do | ballot | -%>
+        <%= image_tag ballot.user.image_url, alt: ballot.user.name, width: 28 %>
+      <% end -%>
+    </div>
   <% end -%>
 </div>
