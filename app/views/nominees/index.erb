@@ -1,16 +1,32 @@
-<h1><%= Setting.site.title %></h1>
-<div>
+<div class="hero-unit">
+  <h1><%= Setting.site.title %></h1>
   <%= Setting.site.description %>
 </div>
 
-<div>
-  <% @nominees.each do |nominee| -%>
-    <%= partial 'nominees/nominee', object: nominee %>
-    <div>
-      <h4>Supporters</h4>
-      <% nominee.ballots.each do | ballot | -%>
-        <%= image_tag ballot.user.image_url, alt: ballot.user.name, width: 28 %>
+<div class="row">
+  <div class="span12">
+    <ul class="thumbnails">
+      <% @nominees.each do |nominee| -%>
+        <li class="span3">
+        <div class="thumbnail">
+          <div style="text-align: center;">
+          <%= link_to image_tag(nominee.image_url, alt: nominee.name), url(:nominee, :show, account: nominee.account) %>
+          </div>
+          <div class="caption">
+            <h3><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h3>
+            <p><%= nominee.description %></p>
+            <p><%= link_to 'vote &raquo;', url(:nominee, :new, nominee.account), class: :btn %></p>
+            <div>
+              <h4>Supporters</h4>
+              <% nominee.ballots.each do | ballot | -%>
+                <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
+                  "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
+              <% end -%>
+            </div>
+          </div>
+        </div>
+        </li>
       <% end -%>
-    </div>
-  <% end -%>
+    </ul>
+  </div>
 </div>

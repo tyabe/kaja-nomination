@@ -26,7 +26,14 @@ class KajaNomination < Padrino::Application
     auth    = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
     session[:user_id] = user.id
+    flash[:notice] = 'login was successful'
     redirect session.delete(:return_to) || '/'
+  end
+
+  get :logout, map: '/logout' do
+    session[:user_id] = nil
+    flash[:notice] = 'logout was successful'
+    redirect '/'
   end
 
   def current_user

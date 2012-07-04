@@ -1,13 +1,13 @@
-<%= partial 'nominees/nominee', object: @nominee %>
+<div class="page-header">
+  <%= partial 'nominees/nominee', object: @nominee %>
+</div>
 
-<% form_for :ballot, url(:nominee, :vote, account: @nominee.account), class: :form, method: (@ballot.new_record? ? :post : :put) do |f| %>
-  <div class="group">
-    <%= f.label :comment %><%= f.error_message_on :comment %>
-    <%= f.text_area :comment, class: :text_area %>
-    <span class="description">Reason for nomination</span>
-  </div>
+<% form_for :ballot, url(:nominee, :vote, account: @nominee.account), class: :well, method: (@ballot.new_record? ? :post : :put) do |f| %>
+  <%= f.label :comment %><%= f.error_message_on :comment %>
+  <%= f.text_area :comment, class: :span8, rows: 8 %>
 
-  <div class="group navform wat-cf">
-    <%= f.submit :save, class: :button %>
+  <div>
+    <%= f.submit :cancel, onclick: "window.location='#{url(:nominee, :show, @nominee.account)}';return false", class: :btn %>
+    <%= f.submit :save, class: "btn btn-primary btn-large" %>
   </div>
 <% end %>

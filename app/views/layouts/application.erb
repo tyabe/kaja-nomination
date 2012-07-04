@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RubyKaja Noination</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <%= stylesheet_link_tag 'application', 'bootstrap.min', 'Bootstrap-responsive.min', 'font-awesome' %>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">RubyKaja Noination</a>
+          <div class="btn-group pull-right">
+            <% if current_user -%>
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-<%= current_user.provider %>"></i> <%= current_user.screen_name %>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout"><i class="icon-off"></i> logout</a></li>
+              </ul>
+            <% else -%>
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                login
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                 <a href="/auth/github"><i class="icon-github"></i> github</a>
+              </ul>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <% flash.each do |name, msg| -%>
+        <% if msg.is_a?(String) && msg.present? -%>
+          <div class="alert alert-block <%= alert_message name %>" data-alert="alert" %>
+            <button type="button" class="close" data-dismiss="alert"><icon class="icon-remove-sign"></i></button>
+            <p><%= msg %></p>
+          </div>
+        <% end -%>
+      <% end -%>
+
+      <%= yield %>
+
+      <hr>
+
+      <footer>
+        <p>Developed by <a href="https://github.com/tyabe" target="_blank">@tyabe</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <%= javascript_include_tag 'jquery', 'jquery-ujs', 'application', 'bootstrap.min' %>
+  </body>
+</html>
