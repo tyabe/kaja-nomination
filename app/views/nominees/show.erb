@@ -1,2 +1,22 @@
 <%= link_to 'back', url(:nominee, :index) %>
 <%= partial 'nominees/nominee', object: @nominee %>
+
+<div>
+  <% @nominee.ballots.each do | ballot | -%>
+    <div>
+      <dl>
+        <dt>
+          <a herf="https://github.com/#{ballot.user.screen_name}", target = "_blank" >
+            <%= image_tag ballot.user.image_url, alt: ballot.user.name, width: 38 %>
+          </a>
+        </dt>
+        <dd>
+          <%= link_to ballot.user.name, "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
+        </dd>
+        <dd>
+          <%= ballot.comment %>
+        </dd>
+      </dl>
+    </div>
+  <% end -%>
+</div>

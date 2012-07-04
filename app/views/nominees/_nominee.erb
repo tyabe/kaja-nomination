@@ -1,6 +1,7 @@
 <div>
   <h2><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h2>
   <%= image_tag nominee.image_url, alt: nominee.name %>
+  <%= link_to 'vote', url(:nominee, :new, nominee.account) %>
   <p><%= nominee.description %></p>
   <% if nominee.github_id.present? -%>
     github: <%= link_to nominee.github_id, "https://github.com/#{nominee.github_id}", target: "_blank" %>

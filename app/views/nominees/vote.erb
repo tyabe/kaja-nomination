@@ -1,0 +1,13 @@
+<%= partial 'nominees/nominee', object: @nominee %>
+
+<% form_for :ballot, url(:nominee, :create, account: @nominee.account), class: :form do |f| %>
+  <div class="group">
+    <%= f.label :comment %><%= f.error_message_on :comment %>
+    <%= f.text_area :comment, class: :text_area %>
+    <span class="description">Reason for nomination</span>
+  </div>
+
+  <div class="group navform wat-cf">
+    <%= f.submit :save, class: :button %>
+  </div>
+<% end %>
