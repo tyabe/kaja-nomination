@@ -39,4 +39,8 @@ class Nominee < ActiveRecord::Base
     github_id || twitter_id
   end
 
+  def find_or_new(user)
+    self.ballots.find_by_user_id(user) || self.ballots.new(user: user)
+  end
+
 end

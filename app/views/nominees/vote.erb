@@ -1,6 +1,6 @@
 <%= partial 'nominees/nominee', object: @nominee %>
 
-<% form_for :ballot, url(:nominee, :create, account: @nominee.account), class: :form do |f| %>
+<% form_for :ballot, url(:nominee, :vote, account: @nominee.account), class: :form, method: (@ballot.new_record? ? :post : :put) do |f| %>
   <div class="group">
     <%= f.label :comment %><%= f.error_message_on :comment %>
     <%= f.text_area :comment, class: :text_area %>
