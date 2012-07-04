@@ -1,4 +1,10 @@
 KajaNomination.controllers :nominee do
+  before :new, :create do
+    unless current_user
+      session[:return_to] = request.fullpath
+      redirect '/auth/github'
+    end
+  end
 
   get :index, map: '/' do
     @nominees = Nominee.all
@@ -25,7 +31,6 @@ KajaNomination.controllers :nominee do
     else
       render 'nominees/vote'
     end
-
   end
 
 end
