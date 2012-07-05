@@ -1,0 +1,6 @@
+ja:
+  models:
+    ballot:
+      name: 投票
+      attributes:
+        comment: コメント

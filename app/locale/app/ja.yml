@@ -4,4 +4,8 @@ ja:
     logout: ログアウト
     voted: 投票しました
     updated_comment: コメントを修正しました
-
+    list_of_nominees: 候補者一覧
+    supporters: 支持者
+    vote: 投票する
+    cancel: キャンセル
+    save: コメントを保存する

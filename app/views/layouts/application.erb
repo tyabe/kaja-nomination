@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>RubyKaja Noination</title>
+    <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
 
@@ -26,7 +26,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">RubyKaja Noination</a>
+          <a class="brand" href="/"><%= site_title %></a>
           <div class="btn-group pull-right">
             <% if current_user -%>
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

@@ -4,3 +4,8 @@ en:
     logout: logout
     voted: 'Vote was successfull.'
     updated_comment: 'Comment was successfully updated.'
+    list_of_nominees: 'List of Nominees'
+    supporters: 'Supporters'
+    vote: 'Vote'
+    cancel: 'Cancel'
+    save: 'Save Comment'

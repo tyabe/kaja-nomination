@@ -1,10 +1,13 @@
 <div class="hero-unit">
-  <h1><%= Setting.site.title %></h1>
-  <%= Setting.site.description %>
+  <h1><%= site_title %></h1>
+  <p><%= Setting.site.description %></p>
 </div>
 
 <div class="row">
   <div class="span12">
+    <p><%= Setting.site.message %></p>
+
+    <h2><%= t('app.list_of_nominees') %></h2>
     <ul class="thumbnails">
       <% @nominees.each do |nominee| -%>
         <li class="span3">
@@ -15,9 +18,9 @@
           <div class="caption">
             <h3><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h3>
             <p><%= nominee.description %></p>
-            <p><%= link_to 'vote &raquo;', url(:nominee, :new, nominee.account), class: :btn %></p>
+            <p><%= link_to "#{t('app.vote')} &raquo;", url(:nominee, :new, nominee.account), class: :btn %></p>
             <div>
-              <h4>Supporters</h4>
+              <h4><%= t('app.supporters') %></h4>
               <% nominee.ballots.each do | ballot | -%>
                 <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
                   "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
