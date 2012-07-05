@@ -26,7 +26,7 @@ KajaNomination.controllers :nominee do
     @nominee = Nominee.find_by_account(params[:account])
     @ballot = @nominee.ballots.new(params[:ballot].merge(user: current_user))
     if @ballot.save
-      flash[:notice] = 'Vote was successfully created.'
+      flash[:notice] = t('app.voted')
       redirect url(:nominee, :show, account: @nominee.account)
     else
       render 'nominees/vote'
@@ -37,6 +37,7 @@ KajaNomination.controllers :nominee do
     @nominee = Nominee.find_by_account(params[:account])
     @ballot = @nominee.ballots.find_by_user_id(current_user)
     if @ballot.update_attributes(params[:ballot])
+      flash[:notice] = t('app.updated_comment')
       redirect url(:nominee, :show, account: @nominee.account)
     else
       render 'nominees/vote'

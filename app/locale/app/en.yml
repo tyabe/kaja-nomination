@@ -1,0 +1,6 @@
+en:
+  app:
+    login: login
+    logout: logout
+    voted: 'Vote was successfull.'
+    updated_comment: 'Comment was successfully updated.'
