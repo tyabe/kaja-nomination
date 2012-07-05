@@ -20,7 +20,15 @@ ja:
       bypass_login: ログインしたままにする
       login: ログイン
 
+      fail_login: ログインに失敗しました
       search_for_github: Githubで検索
+      created_accont: アカウントを作成しました
+      updated_account: アカウントを更新しました
+      destroyed_account: アカウントを削除しました
+      unable_destroy_account: 自身のアカウントは削除できません
+      created_nominee: 候補者を作成しました
+      updated_nominee: 候補者を更新しました
+      destroyed_nominee: 候補者を削除しました
 
       menu:
         accounts: アカウント

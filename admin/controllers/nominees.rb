@@ -13,7 +13,7 @@ Admin.controllers :nominees do
   post :create do
     @nominee = Nominee.new(params[:nominee])
     if @nominee.save
-      flash[:notice] = 'Nominee was successfully created.'
+      flash[:notice] = pat('created_nominee')
       redirect url(:nominees, :index)
     else
       render 'nominees/new'
@@ -28,7 +28,7 @@ Admin.controllers :nominees do
   put :update, :with => :id do
     @nominee = Nominee.find(params[:id])
     if @nominee.update_attributes(params[:nominee])
-      flash[:notice] = 'Nominee was successfully updated.'
+      flash[:notice] = pat('updated_nominee')
       redirect url(:nominees, :index)
     else
       render 'nominees/edit'
@@ -37,11 +37,8 @@ Admin.controllers :nominees do
 
   delete :destroy, :with => :id do
     nominee = Nominee.find(params[:id])
-    if nominee.destroy
-      flash[:notice] = 'Nominee was successfully destroyed.'
-    else
-      flash[:error] = 'Unable to destroy Nominee!'
-    end
+    nominee.destroy
+    flash[:notice] = pat('destroyed_nominee')
     redirect url(:nominees, :index)
   end
 end

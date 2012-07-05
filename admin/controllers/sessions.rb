@@ -14,7 +14,7 @@ Admin.controllers :sessions do
       redirect url(:base, :index)
     else
       params[:email], params[:password] = h(params[:email]), h(params[:password])
-      flash[:warning] = "Login or password wrong."
+      flash[:warning] = pat('fail_login')
       redirect url(:sessions, :new)
     end
   end
