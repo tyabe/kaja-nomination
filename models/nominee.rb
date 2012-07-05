@@ -17,7 +17,9 @@ class Nominee < ActiveRecord::Base
 
     def find_by_account(account)
       t = self.arel_table
-      self.where(t[:github_id].eq(account).or(t[:twitter_id].eq(account))).first
+      account = self.where(t[:github_id].eq(account).or(t[:twitter_id].eq(account))).first
+      raise ActiveRecord::RecordNotFound if account.nil?
+      account
     end
 
     private
