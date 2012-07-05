@@ -13,38 +13,38 @@
         <h2>Login Box</h2>
         <div class="content login">
           <div class="flash">
-            <%= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join %>
+            <%= [:error, :warning, :notice].map { |type| flash_tag(type, class: "message #{type}") }.join %>
           </div>
-          <% form_tag(url(:sessions, :create), :class => 'form login') do %>
+          <% form_tag(url(:sessions, :create), class: 'form login') do %>
             <div class="group wat-cf">
               <div class="left">
-                <label class="label right">Login</label>
+                <label class="label right"><%= pat('account') %></label>
               </div>
               <div class="right">
-                <%= text_field_tag :email, :value => params[:email], :class => 'text_field' %>
+                <%= text_field_tag :email, value: params[:email], class: 'text_field' %>
               </div>
             </div>
             <div class="group wat-cf">
               <div class="left">
-                <label class="label right">Password</label>
+                <label class="label right"><%= pat('password') %></label>
               </div>
               <div class="right">
-                <%= password_field_tag :password, :value => params[:password], :class => 'text_field' %>
+                <%= password_field_tag :password, value: params[:password], class: 'text_field' %>
               </div>
             </div>
             <% if Padrino.env == :development %>
               <div class="group wat-cf">
                 <div class="left">
-                  <label class="label right">Bypass login?</label>
                 </div>
                 <div class="right">
                   <%= check_box_tag :bypass %>
+                  <label class="label right"><%= pat('bypass_login') %></label>
                 </div>
               </div>
             <% end %>
             <div class="group navform wat-cf">
               <div class="right">
-                <%= submit_tag "Sign in", :class => :button %>
+                <%= submit_tag pat('login'), class: :button %>
               </div>
             </div>
           <% end %>

@@ -1,0 +1,11 @@
+ja:
+  models:
+    account:
+      name: アカウント
+      attributes:
+        name: 名前
+        surname: 苗字
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+        role: 役割

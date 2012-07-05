@@ -1,0 +1,8 @@
+ja:
+  models:
+    nominee:
+      name: 候補者
+      attributes:
+        name: 名前
+        description: 推薦理由
+        image_url: 画像URL

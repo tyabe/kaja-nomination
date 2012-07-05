@@ -6,12 +6,11 @@
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat(:new) %> <% mt(:nominee) %></h2>
+    <h2 class="title"><%= pat(:new) %> <%= mt(:nominee) %></h2>
     <div class="inner">
       <% form_tag url(:nominees, :new), method: 'get', class: :form do %>
-        <label for="query">Search for:</label>
-        <%= text_field_tag 'query', value: params[:query], id: 'query' %>
-        <%= submit_tag 'Search' %>
+        <%= text_field_tag 'query', value: params[:query], id: 'query', class: :text_field %>
+        <%= submit_tag pat(:search_for_github) %>
       <% end %>
     </div>
     <div class="inner">

@@ -7,7 +7,7 @@
     </ul>
   </div>
   <div class="content">
-    <h2 class="title"><%= pat(:edit) %> <% mt(:account) %></h2>
+    <h2 class="title"><%= pat(:edit) %> <%= mt(:account) %></h2>
     <div class="inner">
       <% form_for :account, url(:accounts, :update, :id => @account.id), :method => :put, :class => :form do |f| %>
         <%= partial "accounts/form", :locals => { :f => f } %>
