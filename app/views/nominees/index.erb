@@ -7,29 +7,31 @@
   <div class="span12">
     <p><%= Setting.site.message %></p>
 
-    <h2><%= t('app.list_of_nominees') %></h2>
-    <ul class="thumbnails">
-      <% @nominees.each do |nominee| -%>
-        <li class="span3">
-        <div class="thumbnail">
-          <div style="text-align: center;">
-          <%= link_to image_tag(nominee.image_url, alt: nominee.name), url(:nominee, :show, account: nominee.account) %>
-          </div>
-          <div class="caption">
-            <h3><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h3>
-            <p><%= nominee.description %></p>
-            <p><%= link_to "#{t('app.vote')} &raquo;", url(:nominee, :new, nominee.account), class: :btn %></p>
-            <div>
-              <h4><%= t('app.supporters') %></h4>
-              <% nominee.ballots.each do | ballot | -%>
-                <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
-                  "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
-              <% end -%>
+    <% if @nominees.present? -%>
+      <h2><%= t('app.list_of_nominees') %></h2>
+      <ul class="thumbnails">
+        <% @nominees.each do |nominee| -%>
+          <li class="span3">
+          <div class="thumbnail">
+            <div style="text-align: center;">
+              <%= link_to image_tag(nominee.image_url, alt: nominee.name), url(:nominee, :show, account: nominee.account) %>
             </div>
-          </div>
-        </div>
-        </li>
+            <div class="caption">
+              <h3><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h3>
+              <p><%= nominee.description %></p>
+              <p><%= link_to "#{t('app.vote')} &raquo;", url(:nominee, :new, nominee.account), class: :btn %></p>
+              <div>
+                <h4><%= t('app.supporters') %></h4>
+                <% nominee.ballots.each do | ballot | -%>
+                  <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
+                    "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
+                  <% end -%>
+                </div>
+              </div>
+            </div>
+            </li>
+          <% end -%>
+        </ul>
       <% end -%>
-    </ul>
   </div>
 </div>
