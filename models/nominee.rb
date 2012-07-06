@@ -28,7 +28,6 @@ class Nominee < ActiveRecord::Base
       info = Octokit.user(account)
       new do |user|
         user.name = info["name"]
-        user.screen_name = account
         user.image_url = info["avatar_url"]
 
         user.github_id = account
