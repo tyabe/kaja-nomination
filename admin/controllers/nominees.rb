@@ -6,7 +6,13 @@ Admin.controllers :nominees do
   end
 
   get :new do
-    @nominee = params[:query].present? ? Nominee.search(params[:query]) : Nominee.new
+    @nominee = begin
+                 if params[:account].present?
+                   Nominee.search(params[:account], params[:provider])
+                 else
+                   Nominee.new
+                 end
+               end
     render 'nominees/new'
   end
 

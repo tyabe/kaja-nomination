@@ -12,7 +12,7 @@ class Nominee < ActiveRecord::Base
   class << self
 
     def search(account, provider=:github)
-      search_github(account) if provider.to_sym == :github
+      self.send("search_#{provider}", account)
     end
 
     def find_by_account(account)
@@ -23,6 +23,16 @@ class Nominee < ActiveRecord::Base
     end
 
     private
+
+    def search_twitter(account)
+      info = Twitter.user(account)
+      new do |user|
+        user.name = info.name
+        user.image_url = info.profile_image_url(:original)
+
+        user.twitter_id = account
+      end
+    end
 
     def search_github(account)
       info = Octokit.user(account)
@@ -37,7 +47,7 @@ class Nominee < ActiveRecord::Base
   end
 
   def account
-    github_id || twitter_id
+    [github_id, twitter_id].reject(&:blank?).first
   end
 
   def find_or_new(user)

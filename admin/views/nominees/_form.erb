@@ -1,3 +1,7 @@
+<% if @nominee.image_url.present? -%>
+  <%= image_tag @nominee.image_url, alt: @nominee.name, title: @nominee.name, width: 80 %>
+<% end -%>
+
 <div class="group">
   <%= f.label :name %><%= f.error_message_on :name %>
   <%= f.text_field :name, class: :text_field %>
