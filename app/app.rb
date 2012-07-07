@@ -11,10 +11,12 @@ class KajaNomination < Padrino::Application
     register Padrino::Contrib::ExceptionNotifier
     register Padrino::Contrib::Helpers::AssetsCompressor
 
-    set :cache, Padrino::Cache::Store::File.new(Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
+#    set :cache, Padrino::Cache::Store::File.new(Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
 #    set :cache, Padrino::Cache::Store::Memory.new(50)
-#    set :cache, Padrino::Cache::Store::Memcache.new(::Dalli::Client.new('127.0.0.1:11211', exception_retry_limit: 1))
-
+    set :cache, Padrino::Cache::Store::Memcache.new(::Dalli::Client.new(ENV["MEMCACHIER_SERVERS"], 
+                                                                        { username: ENV["MEMCACHIER_USERNAME"],
+                                                                          password: ENV["MEMCACHIER_PASSWORD"]}
+                                                                       ))
     enable :caching
   end
 
