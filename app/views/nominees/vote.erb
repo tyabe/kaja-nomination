@@ -3,7 +3,7 @@
 </div>
 
 <% form_for :ballot, url(:nominee, :vote, account: @nominee.account), class: :well, method: (@ballot.new_record? ? :post : :put) do |f| %>
-  <%= f.label :comment %><%= f.error_message_on :comment %>
+  <%= f.label :comment, caption: "#{t('models.ballot.attributes.comment')}#{f.error_message_on(:comment)}" %>
   <%= f.text_area :comment, class: :span8, rows: 8 %>
 
   <div>
