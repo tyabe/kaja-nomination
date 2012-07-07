@@ -9,3 +9,5 @@ en:
     vote: 'Vote'
     cancel: 'Cancel'
     save: 'Save Comment'
+    login_success: 'login was successful.'
+    logout_success: 'logout was successful.'

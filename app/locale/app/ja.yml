@@ -9,3 +9,5 @@ ja:
     vote: 投票する
     cancel: キャンセル
     save: コメントを保存する
+    login_success: ログインしました
+    logout_success: ログアウトしました
