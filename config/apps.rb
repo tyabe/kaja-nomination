@@ -25,8 +25,21 @@
 # Setup global project settings for your apps. These settings are inherited by every subapp. You can
 # override these settings in the subapps as needed.
 #
+
 Padrino.configure_apps do
-  set :sessions, key: '_kaja_nomination_session'
+  key = '_kaja_nomination_session'
+  if production?
+    # Use Session Store of Dalli
+    require 'rack/session/dalli'
+
+    Padrino.use Rack::Session::Dalli, key: key,
+      cache: Dalli::Client.new(ENV["MEMCACHIER_SERVERS"], 
+                               { username: ENV["MEMCACHIER_USERNAME"],
+                                 password: ENV["MEMCACHIER_PASSWORD"]}
+                              )
+  else
+    set :sessions, key: key
+  end
   set :session_secret, '1f1fa19bb9caf2a2e275ee7542a9a2a163cc803e94c329e4e76da07a5ba22a71'
 end
 
