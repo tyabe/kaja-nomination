@@ -1,11 +1,11 @@
 KajaNomination.helpers do
 
   def title
-    [Setting.site.community, Setting.site.title].join(" | ")
+    [Setting.community, Setting.site_title].join(" | ")
   end
 
   def site_title
-    [Setting.site.title, Setting.site.community].join(" of ")
+    [Setting.site_title, Setting.community].join(" of ")
   end
 
   def alert_message(name)

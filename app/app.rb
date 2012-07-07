@@ -21,9 +21,9 @@ class KajaNomination < Padrino::Application
   end
 
   use OmniAuth::Builder do
-    provider :github,   ENV['GITHUB_KEY']   || Setting.github.key,   ENV['GITHUB_SECRET']    || Setting.github.secret
-    provider :twitter,  ENV['TWITTER_KEY']  || Setting.twitter.key,  ENV['TWITTER_SECRET']   || Setting.twitter.secret
-    provider :facebook, ENV['FACEBOOK_KEY'] || Setting.facebook.key, ENV['FACEBOOK_SECRET']  || Setting.facebook.secret
+    provider :github,   ENV['GITHUB_KEY']   || Oauth.github.key,   ENV['GITHUB_SECRET']    || Oauth.github.secret
+    provider :twitter,  ENV['TWITTER_KEY']  || Oauth.twitter.key,  ENV['TWITTER_SECRET']   || Oauth.twitter.secret
+    provider :facebook, ENV['FACEBOOK_KEY'] || Oauth.facebook.key, ENV['FACEBOOK_SECRET']  || Oauth.facebook.secret
   end
 
   get :auth, map: '/auth/:provider/callback' do
