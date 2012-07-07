@@ -19,7 +19,8 @@ class KajaNomination < Padrino::Application
   end
 
   use OmniAuth::Builder do
-    provider :github, ENV['GITHUB_KEY']||Setting.github.key, ENV['GITHUB_SECRET']||Setting.github.secret
+    provider :github,   ENV['GITHUB_KEY'] ||Setting.github.key,  ENV['GITHUB_SECRET'] ||Setting.github.secret
+    provider :twitter,  ENV['TWITTER_KEY']||Setting.twitter.key, ENV['TWITTER_SECRET']||Setting.twitter.secret
   end
 
   get :auth, map: '/auth/:provider/callback' do

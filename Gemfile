@@ -8,6 +8,7 @@ gem 'thin' # or mongrel
 gem 'rake'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
+gem 'omniauth-twitter'
 gem 'settingslogic'
 gem 'octokit'
 gem 'twitter'

@@ -10,6 +10,10 @@ defaults: &defaults
     key: "your_github_key"
     secret: "your_github_secret"
 
+  twitter:
+    key: "your_twitter_key"
+    secret: "your_twitter_secret"
+
 development:
   <<: *defaults
 
