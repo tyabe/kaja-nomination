@@ -10,7 +10,7 @@
     <% @nominee.ballots.each do | ballot | -%>
       <li>
         <a href="https://github.com/<%= ballot.user.screen_name %>" target="_blank">
-          <%= image_tag ballot.user.image_url, alt: ballot.user.name, width: 28 %>
+          <%= image_tag ballot.user.image_url, alt: ballot.user.name, title: ballot.user.name, width: 28 %>
           <%= ballot.user.screen_name %>
         </a>
         <p><%= ballot.comment %></p>

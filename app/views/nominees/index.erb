@@ -14,7 +14,7 @@
           <li class="span3">
           <div class="thumbnail">
             <div style="text-align: center;">
-              <%= link_to image_tag(nominee.image_url, alt: nominee.name), url(:nominee, :show, account: nominee.account) %>
+              <%= link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
             </div>
             <div class="caption">
               <h3><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h3>
