@@ -14,6 +14,10 @@ defaults: &defaults
     key: "your_twitter_key"
     secret: "your_twitter_secret"
 
+  facebook:
+    key: "your_facebook_key"
+    secret: "your_facebook_secret"
+
 development:
   <<: *defaults
 

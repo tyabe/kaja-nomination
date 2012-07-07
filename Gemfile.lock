@@ -88,6 +88,8 @@ GEM
     omniauth (1.1.0)
       hashie (~> 1.2)
       rack
+    omniauth-facebook (1.4.0)
+      omniauth-oauth2 (~> 1.0.2)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -203,6 +205,7 @@ DEPENDENCIES
   launchy
   mini_record
   octokit
+  omniauth-facebook
   omniauth-github!
   omniauth-twitter
   padrino (= 0.10.7)
