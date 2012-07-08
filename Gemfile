@@ -1,7 +1,5 @@
 source :rubygems
 
-ruby '1.9.3'
-
 # Server requirements
 gem 'thin' # or mongrel
 # gem 'trinidad', :platform => 'jruby'
@@ -27,8 +25,7 @@ gem 'padrino', '0.10.7'
 gem 'padrino-contrib'
 
 group :production do
-  gem 'pg'
-  gem 'dalli'
+  gem 'mysql2'
   gem 'yui-compressor', :require => 'yui/compressor'
 end
 

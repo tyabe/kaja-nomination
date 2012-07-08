@@ -3,15 +3,14 @@ ActiveRecord::Base.configurations[:development] = {
   :database => Padrino.root('db', 'kaja_nomination_development.db')
 }
 
-postgres = URI.parse(ENV['DATABASE_URL'] || '')
-
 ActiveRecord::Base.configurations[:production] = {
-  :adapter  => 'postgresql',
-  :encoding => 'utf8',
-  :database => postgres.path[1..-1],
-  :username => postgres.user,
-  :password => postgres.password,
-  :host     => postgres.host
+  adapter: 'mysql2',
+  encoding: 'utf8',
+  database: ENV['DATABASE_NAME'],
+  pool: 5,
+  host: ENV['DATABASE_HOST'],
+  username: ENV['DATABASE_USER'],
+  password: ENV['DATABASE_PASSWORD']
 }
 
 ActiveRecord::Base.configurations[:test] = {

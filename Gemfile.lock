@@ -44,7 +44,6 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     daemons (1.1.8)
-    dalli (2.1.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -77,6 +76,7 @@ GEM
       activerecord (>= 3.2.0)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    mysql2 (0.3.11)
     nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.6.1)
@@ -132,7 +132,6 @@ GEM
     padrino-mailer (0.10.7)
       mail (~> 2.3.0)
       padrino-core (= 0.10.7)
-    pg (0.14.0)
     polyglot (0.3.3)
     pry (0.9.9.6)
       coderay (~> 1.0.5)
@@ -205,19 +204,18 @@ DEPENDENCIES
   bcrypt-ruby
   capybara
   compass
-  dalli
   erubis (~> 2.7.0)
   fabrication
   faker
   launchy
   mini_record
+  mysql2
   octokit
   omniauth-facebook
   omniauth-github!
   omniauth-twitter
   padrino (= 0.10.7)
   padrino-contrib
-  pg
   pry-padrino
   rack-test
   rake

@@ -27,19 +27,7 @@
 #
 
 Padrino.configure_apps do
-  key = '_kaja_nomination_session'
-  if production?
-    # Use Session Store of Dalli
-    require 'rack/session/dalli'
-
-    Padrino.use Rack::Session::Dalli, key: key,
-      cache: Dalli::Client.new(ENV["MEMCACHIER_SERVERS"], 
-                               { username: ENV["MEMCACHIER_USERNAME"],
-                                 password: ENV["MEMCACHIER_PASSWORD"]}
-                              )
-  else
-    set :sessions, key: key
-  end
+  set :sessions, key: '_kaja_nomination_session'
   set :session_secret, '1f1fa19bb9caf2a2e275ee7542a9a2a163cc803e94c329e4e76da07a5ba22a71'
 end
 
