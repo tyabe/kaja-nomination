@@ -6,13 +6,11 @@ Admin.controllers :nominees do
   end
 
   get :new do
-    @nominee = begin
-                 if params[:account].present?
-                   Nominee.search(params[:account], params[:provider])
-                 else
-                   Nominee.new
-                 end
-               end
+    if params[:account].present?
+      @nominee = Nominee.search(params[:account], params[:provider])
+      flash.now[:warning] = pat('account_not_found') unless @nominee
+    end
+    @nominee ||= Nominee.new
     render 'nominees/new'
   end
 

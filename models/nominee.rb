@@ -25,22 +25,30 @@ class Nominee < ActiveRecord::Base
     private
 
     def search_twitter(account)
-      info = Twitter.user(account)
-      new do |user|
-        user.name = info.name
-        user.image_url = info.profile_image_url(:original)
+      begin
+        info = Twitter.user(account)
+        new do |user|
+          user.name = info.name
+          user.image_url = info.profile_image_url(:original)
 
-        user.twitter_id = account
+          user.twitter_id = account
+        end
+      rescue Twitter::Error::NotFound
+        nil
       end
     end
 
     def search_github(account)
-      info = Octokit.user(account)
-      new do |user|
-        user.name = info["name"]
-        user.image_url = info["avatar_url"]
+      begin
+        info = Octokit.user(account)
+        new do |user|
+          user.name = info["name"]
+          user.image_url = info["avatar_url"]
 
-        user.github_id = account
+          user.github_id = account
+        end
+      rescue Octokit::NotFound
+        nil
       end
     end
 

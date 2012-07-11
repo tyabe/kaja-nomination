@@ -29,6 +29,7 @@ ja:
       created_nominee: 候補者を作成しました
       updated_nominee: 候補者を更新しました
       destroyed_nominee: 候補者を削除しました
+      account_not_found: アカウント情報が見つかりませんでした
 
       menu:
         accounts: アカウント
