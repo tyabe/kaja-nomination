@@ -1,8 +1,8 @@
 KajaNomination.controllers :nominee do
   before :new, :create do
     unless current_user
-      session[:return_to] = request.fullpath
-      redirect '/auth/github'
+      flash[:warn] = t('app.please_login')
+      redirect '/'
     end
   end
 

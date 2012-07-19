@@ -12,3 +12,4 @@ en:
     login_success: 'login was successful.'
     logout_success: 'logout was successful.'
     authentication_failed: 'Authentication failed.'
+    please_login: 'Please Login'
