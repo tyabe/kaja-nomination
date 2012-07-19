@@ -34,6 +34,11 @@ class KajaNomination < Padrino::Application
     redirect session.delete(:return_to) || '/'
   end
 
+  get '/auth/failure' do
+    flash[:alert] = t('app.authentication_failed')
+    redirect '/'
+  end
+
   get :logout, map: '/logout' do
     session[:user_id] = nil
     flash[:notice] = t('app.logout_success')

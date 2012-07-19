@@ -11,3 +11,4 @@ ja:
     save: コメントを保存する
     login_success: ログインしました
     logout_success: ログアウトしました
+    authentication_failed: 認証に失敗しました
