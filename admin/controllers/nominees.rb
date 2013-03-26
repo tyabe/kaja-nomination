@@ -2,8 +2,27 @@ KajaNomination::Admin.controllers :nominees do
 
   get :index do
     @title = "Nominees"
-    @nominees = Nominee.all
+    @nominees = Nominee.where(archive_id: nil).all
     render 'nominees/index'
+  end
+
+  get :archive, '/nominees/archives/:name' do
+    @title = "Nominees #{params[:name]}"
+    @nominees = Archive.where(name: params[:name]).first.nominees
+    render 'nominees/index'
+  end
+
+  put :move, 'nominees/archives/:name' do
+    @title = "Nominees"
+    unless params[:nominee_ids]
+      redirect(url(:nominees, :index))
+    end
+    ids = params[:nominee_ids].split(',').map(&:strip).map(&:to_i)
+    nominees = Nominee.find(ids)
+
+    Archive.where(name: params[:name]).first.nominees << nominees
+
+    redirect url(:nominees, :index)
   end
 
   get :new do

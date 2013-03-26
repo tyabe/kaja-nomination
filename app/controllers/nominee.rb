@@ -8,7 +8,7 @@ KajaNomination::App.controllers :nominee do
   end
 
   get :index, '/' do
-    @nominees = Nominee.all
+    @nominees = Nominee.where(archive_id: nil).all
     render 'nominees/index'
   end
 

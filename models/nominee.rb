@@ -8,6 +8,7 @@ class Nominee < ActiveRecord::Base
 
   # Referenced
   has_many :ballots
+  belongs_to :archive
 
   class << self
 

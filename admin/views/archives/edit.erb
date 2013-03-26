@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+  <li> <%= link_to tag_icon(:list, pat(:list)), url(:archives, :index) %></li>
+  <li> <%= link_to tag_icon(:plus, pat(:new)), url(:archives, :new) %></li>
+  <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:archives, :edit, :id => @archive.id) %></li>
+</ul>
+<div class="tabs-content">
+  <% form_for :archive, url(:archives, :update, :id => @archive.id), :method => :put, :class => 'form-horizontal' do |f| %>
+    <%= partial 'archives/form', :locals => { :f => f } %>
+  <% end %>
+</div>

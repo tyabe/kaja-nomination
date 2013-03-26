@@ -292,6 +292,15 @@ footer p {
 .list-menu-popover-delete-selected-btn {
   margin-right: 10px;
 }
+.list-menu-popover-move-selected {
+  left: 160px;
+  top: 37px;
+  width: 250px;
+  text-align: center;
+}
+.list-menu-popover-move-selected-btn {
+  margin-right: 10px;
+}
 /* ---- End Application::List::ActionsOnList ---- */
 
 /* --- End Application::List --- */

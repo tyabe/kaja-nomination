@@ -36,6 +36,7 @@ module KajaNomination
     access_control.roles_for :admin do |role|
     role.project_module :settings, '/settings'
     role.project_module :nominees, '/nominees'
+    role.project_module :archives, '/archives'
     role.project_module :accounts, '/accounts'
     end
 

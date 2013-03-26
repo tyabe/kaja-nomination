@@ -1,5 +1,10 @@
 <ul class="nav nav-tabs">
-  <li class=active> <%= link_to tag_icon(:list, pat(:list)), url(:nominees, :index) %></li>
+  <li class="<%= 'active' if params[:name].nil? %>"> <%= link_to tag_icon(:list, pat(:list)), url(:nominees, :index) %></li>
+
+  <% Archive.all.each do | archive | -%>
+    <li class="<%= 'active' if params[:name] == archive.name %>"> <%= link_to tag_icon(:list, archive.name), url(:nominees, :archive, archive.name) %></li>
+  <% end -%>
+
   <li> <%= link_to tag_icon(:plus, pat(:new)), url(:nominees, :new) %></li>
 </ul>
 <div class=tabs-content>
@@ -18,6 +23,23 @@
               <li class=list-menu-wrapper.list-menu-wrapper-disabled>
                 <%= link_to tag_icon('check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled' %>
               </li>
+              <li class="list-menu-divider divider"></li>
+                <% Archive.all.each do | archive | -%>
+                  <li class=list-menu-wrapper.list-menu-wrapper-disabled>
+                    <%= link_to tag_icon('inbox', archive.name), '#', :id => 'move-selected', :class => 'list-menu-link list-menu-link-disabled' %>
+                    <div class='list-menu-popover-move-selected popover right'>
+                      <div class=arrow></div>
+                      <h3 class=popover-title><%= archive.name %></h3>
+                      <div class=popover-content>
+                        <% form_tag url(:nominees, :move, archive.name), method: :put do %>
+                          <%=hidden_field_tag :nominee_ids, :'data-move-many-ids' => true %>
+                          <%=submit_tag pat(:move), :class =>'list-menu-popover-move-selected-btn btn btn-info btn-small' %>
+                          <div class='btn btn-small cancel'><%= pat(:cancel) %></div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </li>
+                <% end -%>
               <li class="list-menu-divider divider"></li>
               <li class=list-menu-wrapper.list-menu-wrapper-disabled>
                 <%=link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled' %>

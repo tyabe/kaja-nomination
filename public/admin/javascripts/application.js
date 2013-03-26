@@ -12,10 +12,12 @@
       base.find(listCheckboxesSelector).prop('checked', checked);
       base.find('.list-row')[checked ? 'addClass' : 'removeClass']('list-row-selected');
       toggleAction('#delete-selected', !checked);
+      toggleAction('#move-selected', !checked);
     }
     function generalToggle() {
       var checked = listCheckboxes.filter(':checked').length;
       toggleAction('#delete-selected', checked === 0);
+      toggleAction('#move-selected', checked === 0);
       toggleAction('#deselect-all', checked === 0);
       toggleAction('#select-all', checked === listCheckboxesLength);
     }
@@ -98,6 +100,27 @@
           });
 
         $(this).siblings('.list-menu-popover-delete-selected').find(':hidden[data-delete-many-ids=true]').
+          val(listCheckboxes.filter(':checked').map(function() { return $(this).val(); }).toArray().join(','));
+      });
+      // Move selected
+      $('#move-selected').on('click', function(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        if ($(this).is('.list-menu-link-disabled')) return;
+
+        // Open the popup to confirm deletion
+        $(this).parent().addClass('active').parent('.dropdown').addClass('open');
+        $(this).addClass('active')
+          .siblings('.list-menu-popover-move-selected').first().show()
+          .find('.cancel').on('click', function() {
+            // Hide the popover on cancel
+            $(this).parents('.list-menu-popover-move-selected').hide()
+              .siblings('#move-selected').removeClass('active').parent().removeClass('active');
+            // and close the dropdown
+            $(this).parents('.dropdown').removeClass('open');
+          });
+
+        $(this).siblings('.list-menu-popover-move-selected').find(':hidden[data-move-many-ids=true]').
           val(listCheckboxes.filter(':checked').map(function() { return $(this).val(); }).toArray().join(','));
       });
 
