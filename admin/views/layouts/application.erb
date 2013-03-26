@@ -1,44 +1,64 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Admin</title>
-  <%= stylesheet_link_tag :base, "themes/default/style" %>
-</head>
-<body>
-  <div id="container">
-    <div id="header">
-      <h1><%= link_to "Admin", url(:base_index) %></h1>
-      <div id="user-navigation">
-        <ul class="wat-cf">
-          <li><%= link_to pat(:profile), url(:accounts, :edit, :id => current_account.id) %></li>
-          <li><%= button_to pat(:logout), url(:sessions, :destroy), :method => :delete, :class => :button_to %></li>
-        </ul>
-      </div>
-      <div id="main-navigation">
-        <ul class="wat-cf">
-          <% project_modules.each do |project_module| %>
-            <li class="<%= "active" if request.path_info =~ /^#{project_module.path}/ %>"><%= link_to project_module.human_name, project_module.path("/admin") %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    <div id="wrapper" class="wat-cf">
-      <div class="flash">
-        <%= [:error, :warning, :notice].map { |type| flash_tag(type, :class => "message #{type}") }.join %>
-      </div>
-      <div id="main">
-        <%= yield %>
-        <div id="footer">
-          <div class="block">
-            <p>Copyright &copy; <%= Time.now.year %> Your Site - Powered by <a href="http://www.padrinorb.com" target="_blank">Padrino v.<%= Padrino.version %>.</a></p>
-          </div>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name=viewport content='width=device-width,initial-scale=1' />
+    <title><%= @title.present? ? "#{@title} | Padrino Admin" : "Padrino Admin" %></title>
+    <%= favicon_tag "favicon.ico" %>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel=stylesheet />
+    <%= stylesheet_link_tag 'bootstrap', 'application' %>
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class=navbar-inner>
+        <div class=container>
+          <%= link_to 'Padrino', url(:base_index), :class => 'navbar-brand', :title => 'Padrino Admin' %>
+          <ul class="nav pull-right">
+            <li class=navbar-edit-account><%= link_to tag_icon(:user), url(:accounts, :edit, :id => current_account.id), :title => pat(:profile), :class => 'navbar-nav-link' %></li>
+            <li class=navbar-logout>
+              <%= button_to(:logout, url(:sessions, :destroy), :method => :delete, :class => 'navbar-nav-form') { content_tag :button, tag_icon(:off), :type => :submit, :title => pat(:logout), :class => 'navbar-nav-form-link' } %>
+            </li>
+          </ul>
+
+          <ul class="nav pull-left">
+            <% project_modules.each do |project_module| %>
+              <% if request.path_info =~ /^#{project_module.path}/ %>
+                <li class="navbar-module active">
+              <% else %>
+                <li class=navbar-module>
+              <% end %>
+                <%= link_to project_module.human_name, project_module.path("/admin") %>
+                </li>
+            <% end %>
+          </ul>
         </div>
       </div>
-      <div id="sidebar">
-        <%#= yield_content :sidebar %>
+    </div>
+
+    <div class='container main'>
+      <div class='main-wrapper'>
+        <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
+        <div class='row'><%= yield %></div>
+        <div class='main-wrapper-push'></div>
       </div>
     </div>
-  </div>
-</body>
+
+    <footer>
+      <div class='footer-wrapper container'>
+        <p class='pull-left'>Copyright &copy; 2013 Your Site - Powered by Padrino v.0.11.0</p>
+        <ul class='pull-right footer-links'>
+          <li><%= link_to tag_icon(:home, 'web'), 'http://www.padrinorb.com', :target => :_blank, :class => 'footer-links-link' %></li>
+          <li><%= link_to tag_icon(:heart, 'blog'), 'http://www.padrinorb.com/blog', :target => :_blank, :class => 'footer-links-link' %></li>
+          <li><%= link_to tag_icon(:github, 'code'), 'https://github.com/padrino/padrino-framework', :target => :_blank, :class => 'footer-links-link' %></li>
+          <li><%= link_to tag_icon(:twitter, 'twitter'), 'http://twitter.com/padrinorb', :target => :_blank, :class => 'footer-links-link' %></li>
+        </ul>
+      </div>
+    </footer>
+
+    <%= javascript_include_tag 'jquery-1.9.0.min', (Padrino.env == :production ? 'bootstrap.min' : %w[bootstrap/bootstrap-affix bootstrap/bootstrap-alert bootstrap/bootstrap-button bootstrap/bootstrap-carousel bootstrap/bootstrap-collapse bootstrap/bootstrap-dropdown bootstrap/bootstrap-tooltip bootstrap/bootstrap-transition bootstrap/bootstrap-typeahead bootstrap/bootstrap-modal bootstrap/bootstrap-popover bootstrap/bootstrap-scrollspy bootstrap/bootstrap-tab]), :application %>
+  </body>
 </html>

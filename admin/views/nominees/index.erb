@@ -1,42 +1,78 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first active"><%= link_to pat(:list), url(:nominees, :index) %></li>
-      <li><%= link_to pat(:new), url(:nominees, :new) %></li>
-    </ul>
-  </div>
-  <div class="content">
-    <h2 class="title"><%= pat(:all) %> <%= mt(:nominee) %></h2>
-    <div class="inner">
-      <table class="table">
-        <tr>
-          <th class="first"><%= mat(:nominee, :id) %></th>
-          <th></th>
-          <th><%= mat(:nominee, :name) %></th>
-          <th><%= mat(:nominee, :description) %></th>
-          <th><%= mat(:nominee, :github_id) %></th>
-          <th><%= mat(:nominee, :twitter_id) %></th>
-          <th class="last">&nbsp;</th>
-        </tr>
-        <% @nominees.each do |nominee| %>
-        <tr>
-          <td class="first"><%= nominee.id %></td>
-          <td><%= image_tag nominee.image_url, alt: nominee.name, width: 20 %></td>
-          <td><%= nominee.name %></td>
-          <td><%= nominee.description %></td>
-          <td><%= nominee.github_id ? link_to(nominee.github_id, "https://github.com/#{nominee.github_id}", target: "_blank") : '' %></td>
-          <td><%= nominee.twitter_id ? link_to(nominee.twitter_id, "https://twitter.com/#{nominee.twitter_id}", target: "_blank") : '' %></td>
-          <td class="last">
-            <%= button_to pat(:edit), url(:nominees, :edit, :id => nominee.id), :method => :get, :class => :button_to %> |
-            <%= button_to pat(:delete), url(:nominees, :destroy, :id => nominee.id), :method => :delete, :class => :button_to, :onsubmit => "return confirm('#{pat(:confirm)}')" %>
+<ul class="nav nav-tabs">
+  <li class=active> <%= link_to tag_icon(:list, pat(:list)), url(:nominees, :index) %></li>
+  <li> <%= link_to tag_icon(:plus, pat(:new)), url(:nominees, :new) %></li>
+</ul>
+<div class=tabs-content>
+  <table id=list class="table table-striped table-hover table-condensed">
+    <thead>
+      <tr>
+        <th class="header list-menu">
+          <div class=dropdown>
+            <a href="#" class="list-menu-toggle dropdown-toggle" data-toggle='dropdown'>
+              <%= tag_icon :magic %> <span class=caret></span>
+            </a>
+            <ul class="list-menu dropdown-menu" role=menu>
+              <li class=ist-menu-wrapper>
+                <%= link_to tag_icon(:check, pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link' %>
+              </li>
+              <li class=list-menu-wrapper.list-menu-wrapper-disabled>
+                <%= link_to tag_icon('check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled' %>
+              </li>
+              <li class="list-menu-divider divider"></li>
+              <li class=list-menu-wrapper.list-menu-wrapper-disabled>
+                <%=link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled' %>
+                <div class='list-menu-popover-delete-selected popover right'>
+                  <div class=arrow></div>
+                  <h3 class=popover-title><%= pat(:delete_selected_title) %></h3>
+                  <div class=popover-content>
+                    <% form_tag url(:nominees, :destroy_many), :method => :delete do %>
+                      <%=hidden_field_tag :nominee_ids, :'data-delete-many-ids' => true %>
+                      <%=submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small' %>
+                      <div class='btn btn-small cancel'><%= pat(:cancel) %></div>
+                    <% end %>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </th>
+                <th class=header> <%= :id %></th>
+                <th class=header> </th>
+                <th class=header> <%= :name %></th>
+                <th class=header> <%= :description %></th>
+                <th class=header> <%= :github_id %></th>
+                <th class=header> <%= :twitter_id %></th>
+                <th class="header list-row-action-header"></th>
+    </thead>
+
+    <tbody>
+      <% @nominees.each do |nominee| %>
+        <tr class=list-row>
+          <td class="list-column list-selectable">
+            <%= check_box_tag 'nominee_ids[]', :value => nominee.id, :class => 'list-selectable-checkbox' %>
+           </td>
+          <td class=list-column> <%= nominee.id %> </td>
+          <td class=list-column> <%== image_tag nominee.image_url.to_s, alt: nominee.name, width: 20 %> </td>
+          <td class=list-column> <%= nominee.name %> </td>
+          <td class=list-column> <%== nominee.description %> </td>
+          <td class=list-column> <%= nominee.github_id ? link_to(nominee.github_id, "https://github.com/#{nominee.github_id}", target: "_blank") : '' %> </td>
+          <td class=list-column> <%= nominee.twitter_id ? link_to(nominee.twitter_id, "https://twitter.com/#{nominee.twitter_id}", target: "_blank") : '' %> </td>
+          <td class="list-column list-row-action">
+            <div class='list-row-action-wrapper'>
+               <%= link_to tag_icon(:edit), :href => url(:nominees, :edit, :id => nominee.id), :rel => :tooltip, :title => "#{pat(:edit)} nominee", :class => 'list-row-action-wrapper-link' %>
+               <%= link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} nominee", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
+               <div class="popover list-row-action-popover-delete-one left">
+                 <div class=arrow> </div>
+                 <h3 class=popover-title><%= pat(:delete, :model => "nominee") %></h3>
+                 <div class=popover-content>
+                   <%- form_tag url(:nominees, :destroy, :id => nominee.id), :method => :delete do %>
+                     <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
+                     <div class="btn btn-small cancel"><%= pat(:cancel) %></div>
+                   <% end %>
+               </div>
+             </div>
           </td>
-        </tr>
-        <% end %>
-      </table>
-      <div class="actions-bar wat-cf">
-        <div class="actions"></div>
-      </div>
-    </div>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-<% content_for :sidebar, partial("base/sidebar") %>

@@ -1,25 +1,19 @@
-<div class="block">
-  <div class="secondary-navigation">
-    <ul class="wat-cf">
-      <li class="first"><%= link_to pat(:list), url(:nominees, :index) %></li>
-      <li class="active"><%= link_to pat(:new), url(:nominees, :new) %></li>
-    </ul>
-  </div>
-  <div class="content">
-    <h2 class="title"><%= pat(:new) %> <%= mt(:nominee) %></h2>
-    <div class="inner">
-      <% form_tag "", method: 'get', class: :form do %>
-        <%= label_tag pat(:fetch_account_info) %>
-        <%= text_field_tag 'account', value: params[:account], id: 'account', class: :text_field %>
+<ul class="nav nav-tabs">
+  <li> <%= link_to tag_icon(:list, pat(:list)), url(:nominees, :index) %></li>
+  <li class="active"> <%= link_to tag_icon(:plus, pat(:new)), url(:nominees, :new) %></li>
+</ul>
+<div class="tabs-content">
+  <% form_tag "", method: 'get', class: 'form-horizontal' do %>
+    <fieldset class='control-group'>
+      <div class='controls'>
+        <%= text_field_tag 'account', value: params[:account], id: 'account', class: :text_field, placeholder: pat(:fetch_account_info) %>
         <%= submit_tag :github, name: :provider %>
         <%= submit_tag :twitter, name: :provider %>
-      <% end %>
-    </div>
-    <div class="inner">
-      <% form_for :nominee, url(:nominees, :create), :class => :form do |f| %>
-        <%= partial "nominees/form", :locals => { :f => f } %>
-      <% end %>
-    </div>
-  </div>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <% form_for :nominee, url(:nominees, :create), :class => 'form-horizontal' do |f| %>
+    <%= partial 'nominees/form', :locals => { :f => f } %>
+  <% end %>
 </div>
-<% content_for :sidebar, partial("base/sidebar") %>

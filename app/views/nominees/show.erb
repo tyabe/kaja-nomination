@@ -1,6 +1,6 @@
 <div class="page-header">
-  <%= partial 'nominees/nominee', object: @nominee %>
-  <p><%= link_to "#{t('app.vote')} &raquo;", url(:nominee, :new, @nominee.account), class: "btn btn-primary btn-large" %></p>
+  <%== partial 'nominees/nominee', object: @nominee %>
+  <p><%== link_to "#{t('app.vote')} »", url(:nominee, :new, @nominee.account), class: "btn btn-primary btn-large" %></p>
 </div>
 
 <div>
@@ -9,11 +9,11 @@
     <ul class="unstyled">
     <% @nominee.ballots.each do | ballot | -%>
       <li>
-        <a href="https://github.com/<%= ballot.user.screen_name %>" target="_blank">
-          <%= image_tag ballot.user.image_url, alt: ballot.user.name, title: ballot.user.name, width: 28 %>
-          <%= ballot.user.screen_name %>
+        <a href="https://github.com/<%== ballot.user.screen_name %>" target="_blank">
+          <%== image_tag ballot.user.image_url, alt: ballot.user.name, title: ballot.user.name, width: 28 %>
+          <%== ballot.user.screen_name %>
         </a>
-        <p><%= ballot.comment %></p>
+        <p><%== ballot.comment %></p>
       </li>
     <% end -%>
     </ul>

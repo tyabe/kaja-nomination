@@ -6,6 +6,8 @@ defaults: &defaults
   twitter:
     key: "your_twitter_key"
     secret: "your_twitter_secret"
+    token: "your_oauth_token"
+    token_secret: "your_oauth_token_secret"
 
   facebook:
     key: "your_facebook_key"

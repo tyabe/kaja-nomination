@@ -1,56 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Admin</title>
-  <%= stylesheet_link_tag :base, "themes/default/style" %>
-</head>
-<body>
-  <div id="container">
-    <div id="box">
-      <h1>Admin</h1>
-      <div class="block" id="block-login">
-        <h2>Login Box</h2>
-        <div class="content login">
-          <div class="flash">
-            <%= [:error, :warning, :notice].map { |type| flash_tag(type, class: "message #{type}") }.join %>
-          </div>
-          <% form_tag(url(:sessions, :create), class: 'form login') do %>
-            <div class="group wat-cf">
-              <div class="left">
-                <label class="label right"><%= pat('account') %></label>
-              </div>
-              <div class="right">
-                <%= text_field_tag :email, value: params[:email], class: 'text_field' %>
-              </div>
-            </div>
-            <div class="group wat-cf">
-              <div class="left">
-                <label class="label right"><%= pat('password') %></label>
-              </div>
-              <div class="right">
-                <%= password_field_tag :password, value: params[:password], class: 'text_field' %>
-              </div>
-            </div>
-            <% if Padrino.env == :development %>
-              <div class="group wat-cf">
-                <div class="left">
-                </div>
-                <div class="right">
-                  <%= check_box_tag :bypass %>
-                  <label class="label right"><%= pat('bypass_login') %></label>
-                </div>
-              </div>
-            <% end %>
-            <div class="group navform wat-cf">
-              <div class="right">
-                <%= submit_tag pat('login'), class: :button %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name=viewport content='width=device-width,initial-scale=1' />
+    <title><%= @title.present? ? "#{@title} | Padrino Admin" : "#{pat('login.title')} | Padrino Admin" %></title>
+    <%= favicon_tag "favicon.ico" %>
+    <%= stylesheet_link_tag "bootstrap", "application" %>
+  </head>
+  <body>
+    <% form_tag url(:sessions, :create), :class=>"login form-horizontal" do %>
+      <div class="login-header modal-header">
+        <div class="login-logo"> <%= image_tag("logo.png", :alt => "Padrino's logo", :height => 250, :width => 193) %> </div>
       </div>
-    </div>
-  </div>
-</body>
+      <div class="login-body modal-body">
+
+        <%= [:error, :warning, :success, :notice].map { |type| flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true) }.join.html_safe %>
+
+        <fieldset class="control-group">
+          <label for="email" class="login-input-label control-label"><%= pat('login.email') %></label>
+          <div class="login-controls controls"><%= email_field_tag :email, :value => params[:email], :autofocus => true %></div>
+        </fieldset>
+
+        <fieldset class="control-group">
+          <label for="password" class="login-input-label control-label"><%= pat('login.password') %></label>
+          <div class="login-controls controls"><%= password_field_tag :password, :value => params[:password] %></div>
+        </fieldset>
+
+        <fieldset class="login-control-group-last control-group">
+          <div class="login-controls controls">
+            <label class="login-bypass-label checkbox"><%= check_box_tag :bypass %>  <%= pat('login.bypass') %></label>
+          </div>
+        </fieldset>
+
+      </div>
+      <div class="login-footer modal-footer"><%= submit_tag(pat('login.sign_in'), :class => "btn btn-primary pull-right") %></div>
+    <% end %>
+    <%= javascript_include_tag 'jquery-1.9.0.min', (Padrino.env == :production ? 'bootstrap.min' : %w[bootstrap/bootstrap-affix bootstrap/bootstrap-alert bootstrap/bootstrap-button bootstrap/bootstrap-carousel bootstrap/bootstrap-collapse bootstrap/bootstrap-dropdown bootstrap/bootstrap-tooltip bootstrap/bootstrap-transition bootstrap/bootstrap-typeahead bootstrap/bootstrap-modal bootstrap/bootstrap-popover bootstrap/bootstrap-scrollspy bootstrap/bootstrap-tab]), :application %>
+  </body>
 </html>

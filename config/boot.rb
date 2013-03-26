@@ -7,12 +7,6 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-# Padrino contrib
-require 'padrino-contrib/exception_notifier'
-require 'padrino-contrib/orm/active_record/permalink'
-require 'padrino-contrib/helpers/assets_compressor'
-require 'padrino-contrib/helpers/flash'
-
 ## Configure your I18n
 I18n.default_locale = :ja
 

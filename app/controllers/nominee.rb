@@ -1,4 +1,5 @@
-KajaNomination.controllers :nominee do
+KajaNomination::App.controllers :nominee do
+
   before :new, :create do
     unless current_user
       flash[:warn] = t('app.please_login')
@@ -6,23 +7,23 @@ KajaNomination.controllers :nominee do
     end
   end
 
-  get :index, map: '/' do
+  get :index, '/' do
     @nominees = Nominee.all
     render 'nominees/index'
   end
 
-  get :show, map: '/nominees/:account' do
+  get :show, '/nominees/:account' do
     @nominee = Nominee.find_by_account(params[:account])
     render 'nominees/show'
   end
 
-  get :new, map: '/nominee/:account/vote' do
+  get :new, '/nominee/:account/vote' do
     @nominee = Nominee.find_by_account(params[:account])
     @ballot = @nominee.find_or_new(current_user)
     render 'nominees/vote'
   end
 
-  post :vote, map: '/nominee/:account/vote' do
+  post :vote, '/nominee/:account/vote' do
     @nominee = Nominee.find_by_account(params[:account])
     @ballot = @nominee.ballots.new(params[:ballot].merge(user: current_user))
     if @ballot.save
@@ -33,7 +34,7 @@ KajaNomination.controllers :nominee do
     end
   end
 
-  put :vote, map: '/nominee/:account/vote' do
+  put :vote, '/nominee/:account/vote' do
     @nominee = Nominee.find_by_account(params[:account])
     @ballot = @nominee.ballots.find_by_user_id(current_user)
     if @ballot.update_attributes(params[:ballot])

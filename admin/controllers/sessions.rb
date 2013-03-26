@@ -1,4 +1,4 @@
-Admin.controllers :sessions do
+KajaNomination::Admin.controllers :sessions do
 
   get :new do
     render "/sessions/new", nil, :layout => false
@@ -14,7 +14,7 @@ Admin.controllers :sessions do
       redirect url(:base, :index)
     else
       params[:email], params[:password] = h(params[:email]), h(params[:password])
-      flash[:warning] = pat('fail_login')
+      flash[:error] = pat('login.error')
       redirect url(:sessions, :new)
     end
   end

@@ -1,20 +1,20 @@
 <h2>
-  <%= link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
-  <%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %>
+  <%== link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
+  <%== link_to nominee.name, url(:nominee, :show, account: nominee.account) %>
 </h2>
-<p class="lead"><%= nominee.description %></p>
+<p class="lead"><%== nominee.description %></p>
 <div style="font-size: 16px;">
   <ul class="unstyled">
     <% if nominee.github_id.present? -%>
       <li>
         <i class="icon-github"></i>
-        <%= link_to nominee.github_id, "https://github.com/#{nominee.github_id}", target: "_blank" %>
+        <%== link_to nominee.github_id, "https://github.com/#{nominee.github_id}", target: "_blank" %>
       </li>
     <% end -%>
     <% if nominee.twitter_id.present? -%>
       <li>
         <i class="icon-twitter"></i>
-        <%= link_to nominee.twitter_id, "https://twitter.com/#{nominee.twitter_id}", target: "_blank" %>
+        <%== link_to nominee.twitter_id, "https://twitter.com/#{nominee.twitter_id}", target: "_blank" %>
       </li>
     <% end -%>
   </ul>

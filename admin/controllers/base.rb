@@ -1,6 +1,7 @@
-Admin.controllers :base do
+KajaNomination::Admin.controllers :base do
 
-  get :index, :map => "/" do
-    redirect url(:nominees, :index)
+  get :index, "/" do
+    render "base/index"
   end
+
 end

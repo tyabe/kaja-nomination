@@ -1,4 +1,4 @@
-KajaNomination.helpers do
+KajaNomination::App.helpers do
 
   def title
     [Setting.community, Setting.site_title].join(" | ")

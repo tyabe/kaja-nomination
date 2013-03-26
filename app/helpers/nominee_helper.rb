@@ -1,7 +1,2 @@
-# Helper methods defined here can be accessed in any controller or view in the application
-
-KajaNomination.helpers do
-  # def simple_helper_method
-  #  ...
-  # end
+KajaNomination::App.helpers do
 end

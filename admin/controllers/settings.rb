@@ -1,6 +1,6 @@
-Admin.controllers :settings do
+KajaNomination::Admin.controllers :settings do
 
-  get :edit, map: '/settings' do
+  get :index do
     render 'settings/edit'
   end
 
@@ -11,8 +11,7 @@ Admin.controllers :settings do
     end
     Setting.clear_cache
     flash[:notice] = 'Setting was successfully updated.'
-    redirect url(:settings, :edit)
+    redirect url(:settings, :index)
   end
 
 end
-

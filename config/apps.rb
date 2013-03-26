@@ -41,9 +41,18 @@ Padrino.configure_apps do
     set :sessions, key: key
   end
   set :session_secret, '1f1fa19bb9caf2a2e275ee7542a9a2a163cc803e94c329e4e76da07a5ba22a71'
+  set :protection, true
+  set :protect_from_csrf, true
+end
+
+Twitter.configure do |config|
+  config.consumer_key       = (ENV['TWITTER_KEY']           || Oauth.twitter.key)
+  config.consumer_secret    = (ENV['TWITTER_SECRET']        || Oauth.twitter.secret)
+  config.oauth_token        = (ENV['TWITTER_TOKEN']         || Oauth.twitter.token)
+  config.oauth_token_secret = (ENV['TWITTER_TOKEN_SECRET']  || Oauth.twitter.token_secret)
 end
 
 # Mounts the core application for this project
-Padrino.mount("KajaNomination").to('/')
+Padrino.mount('KajaNomination::App', app_file: Padrino.root('app/app.rb')).to('/')
+Padrino.mount("KajaNomination::Admin", app_file: Padrino.root('admin/app.rb')).to("/admin")
 
-Padrino.mount("Admin").to("/admin")

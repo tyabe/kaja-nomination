@@ -1,6 +1,6 @@
-source :rubygems
+source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
 # Server requirements
 gem 'thin' # or mongrel
@@ -8,7 +8,6 @@ gem 'thin' # or mongrel
 
 # Project requirements
 gem 'rake'
-gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -17,13 +16,14 @@ gem 'octokit'
 gem 'twitter'
 
 # Component requirements
+gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'compass'
 gem 'erubis', "~> 2.7.0"
 gem 'mini_record'
 
 # Padrino Stable Gem
-gem 'padrino', '0.10.7'
+gem 'padrino', '0.11.0'
 gem 'padrino-contrib'
 
 group :production do

@@ -1,5 +1,5 @@
 ---
-:orm: mini_record
+:orm: minirecord
 :test: rspec
 :mock: none
 :script: jquery

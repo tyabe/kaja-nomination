@@ -1,38 +1,36 @@
-<div class="block">
-  <div class="content">
-    <h2 class="title"><%= pat(:edit) %> <% mt(:setting) %></h2>
-    <div class="inner">
-      <% form_tag url(:settings, :update), method: :put, class: :form do %>
-        <div class="group">
-          <%= label_tag :site_title %>
-          <%= text_field_tag :site_title, value: Setting.site_title, class: :text_field %>
-          <span class="description"></span>
-        </div>
-        <div class="group">
-          <%= label_tag :site_description %>
-          <%= text_field_tag :site_description, value: Setting.site_description, class: :text_field %>
-          <span class="description"></span>
-        </div>
-        <div class="group">
-          <%= label_tag :site_keywords %>
-          <%= text_field_tag :site_keywords, value: Setting.site_keywords, class: :text_field %>
-          <span class="description"></span>
-        </div>
-        <div class="group">
-          <%= label_tag :community %>
-          <%= text_field_tag :community, value: Setting.community, class: :text_field %>
-          <span class="description"></span>
-        </div>
-        <div class="group">
-          <%= label_tag :message %>
-          <%= text_area_tag :message, value: Setting.message, class: :text_area %>
-          <span class="description"></span>
-        </div>
-
-        <div class="group navform wat-cf">
-          <%= submit_tag pat(:save), class: :button %>
-        </div>
-      <% end %>
+<% form_tag url(:settings, :update), method: :put, class: 'form-horizontal' do %>
+  <fieldset class='control-group'>
+    <%= label_tag :site_title, class: 'control-label' %>
+    <div class='controls'>
+      <%= text_field_tag :site_title, value: Setting.site_title, class: 'input-xlarge input-with-feedback', :autofocus => true %>
     </div>
+  </fieldset>
+  <fieldset class='control-group'>
+    <%= label_tag :site_description, class: 'control-label' %>
+    <div class='controls'>
+      <%= text_field_tag :site_description, value: Setting.site_description, class: :text_field %>
+    </div>
+  </fieldset>
+  <fieldset class='control-group'>
+    <%= label_tag :site_keywords, class: 'control-label' %>
+    <div class='controls'>
+      <%= text_field_tag :site_keywords, value: Setting.site_keywords, class: :text_field %>
+    </div>
+  </fieldset>
+  <fieldset class='control-group'>
+    <%= label_tag :community, class: 'control-label' %>
+    <div class='controls'>
+      <%= text_field_tag :community, value: Setting.community, class: :text_field %>
+    </div>
+  </fieldset>
+  <fieldset class='control-group'>
+    <%= label_tag :message, class: 'control-label' %>
+    <div class='controls'>
+      <%= text_area_tag :message, value: Setting.message, class: :text_area, rows: 5 %>
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= submit_tag pat(:save), class: 'btn btn-primary' %>
   </div>
-</div>
+<% end %>

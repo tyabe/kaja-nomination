@@ -1,29 +1,50 @@
 <% if @nominee.image_url.present? -%>
-  <%= image_tag @nominee.image_url, alt: @nominee.name, title: @nominee.name, width: 80 %>
+  <fieldset class='control-group'>
+    <div class='controls'>
+      <%= image_tag @nominee.image_url, alt: @nominee.name, title: @nominee.name, width: 80 %>
+    </div>
+  </fieldset>
 <% end -%>
+<% error = @nominee.errors.include?(:name) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :name, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_field :name, :class => 'input-xlarge input-with-feedback' %>
+  </div>
+</fieldset>
+<% error = @nominee.errors.include?(:image_url) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :image_url, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_field :image_url, :class => 'input-xlarge input-with-feedback' %>
+  </div>
+</fieldset>
+<% error = @nominee.errors.include?(:description) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :description, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_area :description, :class => 'input-xlarge input-with-feedback' %>
+  </div>
+</fieldset>
+<% error = @nominee.errors.include?(:github_id) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :github_id, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_field :github_id, :class => 'input-xlarge input-with-feedback' %>
+  </div>
+</fieldset>
+<% error = @nominee.errors.include?(:twitter_id) %>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :twitter_id, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.text_field :twitter_id, :class => 'input-xlarge input-with-feedback' %>
+  </div>
+</fieldset>
 
-<div class="group">
-  <%= f.label :name %><%= f.error_message_on :name %>
-  <%= f.text_field :name, class: :text_field %>
-</div>
-<div class="group">
-  <%= f.label :image_url %><%= f.error_message_on :image_url %>
-  <%= f.text_field :image_url, class: :text_field %>
-</div>
-<div class="group">
-  <%= f.label :description %><%= f.error_message_on :description %>
-  <%= f.text_area :description, class: :text_area %>
-</div>
-<div class="group">
-  <%= f.label :github_id %><%= f.error_message_on :github_id %>
-  <%= f.text_field :github_id, class: :text_field %>
-</div>
-<div class="group">
-  <%= f.label :twitter_id %><%= f.error_message_on :twitter_id %>
-  <%= f.text_field :twitter_id, class: :text_field %>
-</div>
-
-<div class="group navform wat-cf">
-  <%= f.submit pat(:save), class: :button %>
-  <%= f.submit pat(:cancel), onclick: "window.location='#{url(:nominees, :index)}';return false", class: :button %>
+<div class="form-actions">
+  <%= f.submit pat(:save), :class => 'btn btn-primary' %>
+  &nbsp;
+  <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
+  &nbsp;
+  <%= link_to pat(:cancel), url(:nominees, :index), :class => 'btn' %>
 </div>
