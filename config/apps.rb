@@ -32,14 +32,12 @@ Padrino.configure_apps do
     # Use Session Store of Dalli
     require 'rack/session/dalli'
 
-    Padrino.use Rack::Session::Dalli, key: key,
-      cache: Dalli::Client.new(ENV["MEMCACHIER_SERVERS"], 
-                               { username: ENV["MEMCACHIER_USERNAME"],
-                                 password: ENV["MEMCACHIER_PASSWORD"]}
-                              )
-  else
-    set :sessions, key: key
+    set :cache, Dalli::Client.new(ENV["MEMCACHIER_SERVERS"], 
+                                  { username: ENV["MEMCACHIER_USERNAME"],
+                                    password: ENV["MEMCACHIER_PASSWORD"]}
+                                 )
   end
+  set :sessions, key: key
   set :session_secret, '1f1fa19bb9caf2a2e275ee7542a9a2a163cc803e94c329e4e76da07a5ba22a71'
   set :protection, true
   set :protect_from_csrf, true
