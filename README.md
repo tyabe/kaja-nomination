@@ -12,9 +12,9 @@ $ padrino s
 ```
 
 ## In production environment
-Use Dalli
-Use Github OAuth settings
-Use Twitter OAuth settings and access token
-Use Facebook OAuth settings
+* Use Dalli
+* Use Github OAuth settings
+* Use Twitter OAuth settings and access token
+* Use Facebook OAuth settings
 
 distributed under the [MIT License](http://tyabe.mit-license.org/)
