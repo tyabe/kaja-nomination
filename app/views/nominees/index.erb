@@ -7,6 +7,8 @@
   <div class="span12">
     <p><%== Setting.message %></p>
 
+    <%= link_to t('app.kaja_recommend'), url(:nominee, :new), class: 'btn btn-large btn-info' %>
+
     <% if @nominees.present? -%>
       <h2><%= t('app.list_of_nominees') %></h2>
       <table class="table table-striped">
@@ -17,7 +19,7 @@
                 <%== link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
                 <p><%== link_to nominee.name, url(:nominee, :show, account: nominee.account) %></p>
                 <div class="span2">
-                  <%== link_to "#{t('app.vote')} »", url(:nominee, :new, nominee.account), class: :btn %>
+                  <%== link_to "#{t('app.vote')} »", url(:nominee, :vote, nominee.account), class: :btn %>
                 </div>
               </td>
               <td>

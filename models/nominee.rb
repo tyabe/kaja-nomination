@@ -5,6 +5,8 @@ class Nominee < ActiveRecord::Base
 
   # Validations
   validates_presence_of :name, :description
+  validates_uniqueness_of :github_id,  scope: :archive_id, if: :github_id?
+  validates_uniqueness_of :twitter_id, scope: :archive_id, if: :twitter_id?
 
   # Referenced
   has_many :ballots

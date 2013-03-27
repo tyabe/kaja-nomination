@@ -13,3 +13,10 @@ ja:
     logout_success: ログアウトしました
     authentication_failed: 認証に失敗しました
     please_login: ログインしてください
+    input_github_account: Githubアカウントを入力してください
+    kaja_recommend: Kajaを推薦する
+    recommend: 推薦する
+    account_not_found: アカウント情報が見つかりませんでした
+    created_nominee: 候補者を追加しました
+    already_registered: 既に登録されています
+
