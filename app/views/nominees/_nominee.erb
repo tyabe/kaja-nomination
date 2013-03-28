@@ -2,7 +2,7 @@
   <%== link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
   <%== link_to nominee.name, url(:nominee, :show, account: nominee.account) %>
 </h2>
-<p class="lead"><%== nominee.description %></p>
+<p class="lead"><%==simple_format (h nominee.description) %></p>
 <div style="font-size: 16px;">
   <ul class="unstyled">
     <% if nominee.github_id.present? -%>
