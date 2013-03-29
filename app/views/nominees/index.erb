@@ -1,5 +1,5 @@
 <div class="hero-unit">
-  <h1><%== site_title %></h1>
+  <h1><%= site_title %></h1>
   <p><%== Setting.site_description %></p>
 </div>
 
@@ -16,17 +16,17 @@
           <% @nominees.each do |nominee| -%>
             <tr>
               <td>
-                <%== link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
-                <p><%== link_to nominee.name, url(:nominee, :show, account: nominee.account) %></p>
+                <%= link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
+                <p><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></p>
                 <div class="span2">
-                  <%== link_to "#{t('app.vote')} »", url(:nominee, :vote, nominee.account), class: :btn %>
+                  <%= link_to "#{t('app.vote')} »", url(:nominee, :vote, nominee.account), class: :btn %>
                 </div>
               </td>
               <td>
-                <p><%== nominee.description %></p>
-                <h4><%== t('app.supporters') %></h4>
+                <p><%= nominee.description %></p>
+                <h4><%= t('app.supporters') %></h4>
                 <% nominee.ballots.each do | ballot | -%>
-                  <%== link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
+                  <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
                     "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
                 <% end -%>
               </td>
