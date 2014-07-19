@@ -24,13 +24,6 @@ module KajaNomination
       role.project_module :accounts, '/accounts'
     end
 
-    Twitter.configure do |config|
-      config.consumer_key       = (ENV['TWITTER_KEY']           || Oauth.twitter.key)
-      config.consumer_secret    = (ENV['TWITTER_SECRET']        || Oauth.twitter.secret)
-      config.oauth_token        = (ENV['TWITTER_TOKEN']         || Oauth.twitter.token)
-      config.oauth_token_secret = (ENV['TWITTER_TOKEN_SECRET']  || Oauth.twitter.token_secret)
-    end
-
     # Custom error management 
     error(403) { @title = "Error 403"; render('errors/403', layout: :error) }
     error(404) { @title = "Error 404"; render('errors/404', layout: :error) }

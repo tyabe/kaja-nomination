@@ -29,7 +29,13 @@ class Nominee < ActiveRecord::Base
 
     def search_twitter(account)
       begin
-        info = Twitter.user(account)
+        info = Twitter::REST::Client.new { |config|
+          config.consumer_key        = (ENV['TWITTER_KEY']           || Oauth.twitter.key)
+          config.consumer_secret     = (ENV['TWITTER_SECRET']        || Oauth.twitter.secret)
+          config.access_token        = (ENV['TWITTER_TOKEN']         || Oauth.twitter.token)
+          config.access_token_secret = (ENV['TWITTER_TOKEN_SECRET']  || Oauth.twitter.token_secret)
+        }.user(account)
+
         new do |user|
           user.name = info.name
           user.image_url = info.profile_image_url(:original)
