@@ -12,12 +12,12 @@
       base.find(listCheckboxesSelector).prop('checked', checked);
       base.find('.list-row')[checked ? 'addClass' : 'removeClass']('list-row-selected');
       toggleAction('#delete-selected', !checked);
-      toggleAction('#move-selected', !checked);
+      toggleAction('.move-selected', !checked);
     }
     function generalToggle() {
       var checked = listCheckboxes.filter(':checked').length;
       toggleAction('#delete-selected', checked === 0);
-      toggleAction('#move-selected', checked === 0);
+      toggleAction('.move-selected', checked === 0);
       toggleAction('#deselect-all', checked === 0);
       toggleAction('#select-all', checked === listCheckboxesLength);
     }
@@ -103,7 +103,7 @@
           val(listCheckboxes.filter(':checked').map(function() { return $(this).val(); }).toArray().join(','));
       });
       // Move selected
-      $('#move-selected').on('click', function(ev) {
+      $('.move-selected').on('click', function(ev) {
         ev.preventDefault();
         ev.stopPropagation();
         if ($(this).is('.list-menu-link-disabled')) return;
@@ -115,7 +115,7 @@
           .find('.cancel').on('click', function() {
             // Hide the popover on cancel
             $(this).parents('.list-menu-popover-move-selected').hide()
-              .siblings('#move-selected').removeClass('active').parent().removeClass('active');
+              .siblings('.move-selected').removeClass('active').parent().removeClass('active');
             // and close the dropdown
             $(this).parents('.dropdown').removeClass('open');
           });

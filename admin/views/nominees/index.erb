@@ -26,7 +26,7 @@
               <li class="list-menu-divider divider"></li>
                 <% Archive.all.each do | archive | -%>
                   <li class=list-menu-wrapper.list-menu-wrapper-disabled>
-                    <%= link_to tag_icon('inbox', archive.name), '#', :id => 'move-selected', :class => 'list-menu-link list-menu-link-disabled' %>
+                    <%= link_to tag_icon('inbox', archive.name), '#', :class => 'move-selected list-menu-link list-menu-link-disabled' %>
                     <div class='list-menu-popover-move-selected popover right'>
                       <div class=arrow></div>
                       <h3 class=popover-title><%= archive.name %></h3>
