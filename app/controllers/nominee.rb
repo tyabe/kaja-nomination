@@ -69,7 +69,6 @@ KajaNomination::App.controllers :nominee do
 
   post :create, '/nominees/new' do
     @nominee = Nominee.new(params[:nominee])
-    logger.info params
     if @nominee.save
       @nominee.ballots.create(user: current_user, comment: params[:nominee][:description])
       flash[:notice] = t('app.created_nominee')

@@ -2,31 +2,31 @@
   <fieldset class='control-group'>
     <%= label_tag :site_title, class: 'control-label' %>
     <div class='controls'>
-      <%= text_field_tag :site_title, value: Setting.site_title, class: 'input-xlarge input-with-feedback', :autofocus => true %>
+      <%= text_field_tag :site_title, value: Setting.site_title, class: 'form-control input-xlarge input-with-feedback', :autofocus => true %>
     </div>
   </fieldset>
   <fieldset class='control-group'>
     <%= label_tag :site_description, class: 'control-label' %>
     <div class='controls'>
-      <%= text_field_tag :site_description, value: Setting.site_description, class: :text_field %>
+      <%= text_field_tag :site_description, value: Setting.site_description, class: 'form-control input-xlarge input-with-feedback' %>
     </div>
   </fieldset>
   <fieldset class='control-group'>
     <%= label_tag :site_keywords, class: 'control-label' %>
     <div class='controls'>
-      <%= text_field_tag :site_keywords, value: Setting.site_keywords, class: :text_field %>
+      <%= text_field_tag :site_keywords, value: Setting.site_keywords, class: 'form-control input-xlarge input-with-feedback' %>
     </div>
   </fieldset>
   <fieldset class='control-group'>
     <%= label_tag :community, class: 'control-label' %>
     <div class='controls'>
-      <%= text_field_tag :community, value: Setting.community, class: :text_field %>
+      <%= text_field_tag :community, value: Setting.community, class: 'form-control input-xlarge input-with-feedback' %>
     </div>
   </fieldset>
   <fieldset class='control-group'>
     <%= label_tag :message, class: 'control-label' %>
     <div class='controls'>
-      <%= text_area_tag :message, value: Setting.message, class: :text_area, rows: 5 %>
+      <%= text_area_tag :message, value: Setting.message, class: 'form-control input-xlarge input-with-feedback', rows: 5 %>
     </div>
   </fieldset>
 

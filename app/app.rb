@@ -10,14 +10,11 @@ module KajaNomination
       register Padrino::Cache
       register Padrino::Contrib::ExceptionNotifier
       register Padrino::Contrib::Helpers::AssetsCompressor
-
-  #    set :cache, Padrino::Cache::Store::File.new(Padrino.root('tmp', app_name.to_s, 'cache')) # default choice
-  #    set :cache, Padrino::Cache::Store::Memory.new(50)
-      set :cache, Padrino::Cache::Store::Memcache.new(::Dalli::Client.new(ENV["MEMCACHIER_SERVERS"], 
-                                                                          { username: ENV["MEMCACHIER_USERNAME"],
-                                                                            password: ENV["MEMCACHIER_PASSWORD"]}
-                                                                         ))
       enable :caching
+      set :cache, Padrino::Cache.new(
+        :Memcached,
+        backend: ::Dalli::Client.new( ENV["MEMCACHIER_SERVERS"], { username: ENV["MEMCACHIER_USERNAME"], password: ENV["MEMCACHIER_PASSWORD"] })
+      )
     end
 
     use OmniAuth::Builder do
@@ -45,12 +42,28 @@ module KajaNomination
       redirect '/'
     end
 
-    def current_user
-      @current_user ||= User.find_by_id(session[:user_id])
+    def logged_in?
+      !!session[:user_id]
     end
 
-    not_found do
+    def current_user
+      return unless session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    end
+
+    def authenticate
+      return if logged_in?
+      flash[:warn] = t('app.please_login')
+      redirect '/'
+    end
+
+    def error404
+      status 404
       render 'errors/not_found'
+    end
+
+    error ActiveRecord::RecordNotFound, Sinatra::NotFound, 404 do
+      error404
     end
 
     error do

@@ -2,7 +2,7 @@
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :name, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_field :name, :class => 'input-xlarge input-with-feedback', :autofocus => true %>
+    <%= f.text_field :name, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
     <span class='help-inline'><%= error ? f.error_message_on(:name) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
@@ -10,7 +10,7 @@
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :note, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_area :note, :class => 'input-xlarge input-with-feedback' %>
+    <%= f.text_area :note, :class => 'form-control input-xlarge input-with-feedback' %>
     <span class='help-inline'><%= error ? f.error_message_on(:note) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
@@ -21,5 +21,5 @@
   &nbsp;
   <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
   &nbsp;
-  <%= link_to pat(:cancel), url(:archives, :index), :class => 'btn' %>
+  <%= link_to pat(:cancel), url(:archives, :index), :class => 'btn btn-default' %>
 </div>

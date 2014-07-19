@@ -3,15 +3,15 @@
   <li class="active"> <%= link_to tag_icon(:plus, pat(:new)), url(:nominees, :new) %></li>
 </ul>
 <div class="tabs-content">
-  <% form_tag "", method: 'get', class: 'form-horizontal' do %>
-    <fieldset class='control-group'>
-      <div class='controls'>
-        <%= text_field_tag 'account', value: params[:account], id: 'account', class: :text_field, placeholder: pat(:fetch_account_info) %>
-        <%= submit_tag :github, name: :provider %>
-        <%= submit_tag :twitter, name: :provider %>
+  <div class="well well-sm">
+    <% form_tag "", method: 'get' do %>
+      <div class="form-group">
+        <%= text_field_tag 'account', value: params[:account], id: 'account', class: 'form-control', placeholder: pat(:fetch_account_info) %>
       </div>
-    </fieldset>
-  <% end %>
+      <%= submit_tag :github, name: :provider, class: 'btn btn-default' %>
+      <%= submit_tag :twitter, name: :provider, class: 'btn btn-default'  %>
+    <% end %>
+  </div>
 
   <% form_for :nominee, url(:nominees, :create), :class => 'form-horizontal' do |f| %>
     <%= partial 'nominees/form', :locals => { :f => f } %>

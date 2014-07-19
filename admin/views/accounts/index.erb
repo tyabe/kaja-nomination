@@ -28,7 +28,7 @@
                     <% form_tag url(:accounts, :destroy_many), :method => :delete do %>
                       <%=hidden_field_tag :account_ids, :'data-delete-many-ids' => true %>
                       <%=submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small' %>
-                      <div class='btn btn-small cancel'><%= pat(:cancel) %></div>
+                      <div class='btn btn-default btn-small cancel'><%= pat(:cancel) %></div>
                     <% end %>
                   </div>
                 </div>
@@ -36,10 +36,10 @@
             </ul>
           </div>
         </th>
-                <th class=header> <%= :id %></th>
-                <th class=header> <%= :name %></th>
-                <th class=header> <%= :surname %></th>
-                <th class=header> <%= :email %></th>
+                <th class=header> <%= mat(:account, :id) %></th>
+                <th class=header> <%= mat(:account, :name) %></th>
+                <th class=header> <%= mat(:account, :surname) %></th>
+                <th class=header> <%= mat(:account, :email) %></th>
                 <th class="header list-row-action-header"></th>
     </thead>
 
@@ -63,7 +63,7 @@
                  <div class=popover-content>
                    <%- form_tag url(:accounts, :destroy, :id => account.id), :method => :delete do %>
                      <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
-                     <div class="btn btn-small cancel"><%= pat(:cancel) %></div>
+                     <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
                    <% end %>
                </div>
              </div>

@@ -1,7 +1,11 @@
 <% if @nominee.image_url.present? -%>
   <fieldset class='control-group'>
-    <div class='controls'>
-      <%= image_tag @nominee.image_url, alt: @nominee.name, title: @nominee.name, width: 80 %>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="thumbnail">
+          <%= image_tag @nominee.image_url, alt: @nominee.name, title: @nominee.name, width: 80 %>
+        </div>
+      </div>
     </div>
   </fieldset>
 <% end -%>
@@ -9,35 +13,35 @@
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :name, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_field :name, :class => 'input-xlarge input-with-feedback' %>
+    <%= f.text_field :name, :class => 'form-control input-xlarge input-with-feedback' %>
   </div>
 </fieldset>
 <% error = @nominee.errors.include?(:image_url) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :image_url, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_field :image_url, :class => 'input-xlarge input-with-feedback' %>
+    <%= f.text_field :image_url, :class => 'form-control input-xlarge input-with-feedback' %>
   </div>
 </fieldset>
 <% error = @nominee.errors.include?(:description) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :description, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_area :description, :class => 'input-xlarge input-with-feedback' %>
+    <%= f.text_area :description, :class => 'form-control input-xlarge input-with-feedback' %>
   </div>
 </fieldset>
 <% error = @nominee.errors.include?(:github_id) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :github_id, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_field :github_id, :class => 'input-xlarge input-with-feedback' %>
+    <%= f.text_field :github_id, :class => 'form-control input-xlarge input-with-feedback' %>
   </div>
 </fieldset>
 <% error = @nominee.errors.include?(:twitter_id) %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :twitter_id, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_field :twitter_id, :class => 'input-xlarge input-with-feedback' %>
+    <%= f.text_field :twitter_id, :class => 'form-control input-xlarge input-with-feedback' %>
   </div>
 </fieldset>
 
@@ -46,5 +50,5 @@
   &nbsp;
   <%= f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue' %>
   &nbsp;
-  <%= link_to pat(:cancel), url(:nominees, :index), :class => 'btn' %>
+  <%= link_to pat(:cancel), url(:nominees, :index), :class => 'btn btn-default' %>
 </div>

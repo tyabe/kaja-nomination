@@ -34,7 +34,7 @@
                         <% form_tag url(:nominees, :move, archive.name), method: :put do %>
                           <%=hidden_field_tag :nominee_ids, :'data-move-many-ids' => true %>
                           <%=submit_tag pat(:move), :class =>'list-menu-popover-move-selected-btn btn btn-info btn-small' %>
-                          <div class='btn btn-small cancel'><%= pat(:cancel) %></div>
+                          <div class='btn btn-default btn-small cancel'><%= pat(:cancel) %></div>
                         <% end %>
                       </div>
                     </div>
@@ -50,7 +50,7 @@
                     <% form_tag url(:nominees, :destroy_many), :method => :delete do %>
                       <%=hidden_field_tag :nominee_ids, :'data-delete-many-ids' => true %>
                       <%=submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small' %>
-                      <div class='btn btn-small cancel'><%= pat(:cancel) %></div>
+                      <div class='btn btn-default btn-small cancel'><%= pat(:cancel) %></div>
                     <% end %>
                   </div>
                 </div>
@@ -89,7 +89,7 @@
                  <div class=popover-content>
                    <%- form_tag url(:nominees, :destroy, :id => nominee.id), :method => :delete do %>
                      <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
-                     <div class="btn btn-small cancel"><%= pat(:cancel) %></div>
+                     <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
                    <% end %>
                </div>
              </div>

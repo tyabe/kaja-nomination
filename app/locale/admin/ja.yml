@@ -1,34 +1,14 @@
 ja:
   padrino:
     admin:
-      save: 保存
-      cancel: キャンセル
       list: 一覧
-      edit: 編集
-      new: 新規
       show: 詳細
       delete: 削除
       confirm: 本当に削除しますか？
       created_at: 作成日時
       all: 全ての
-      profile: プロフィール
-      settings: 設定
-      logout: ログアウト
 
-      account: アカウント
-      password: パスワード
-      bypass_login: ログインしたままにする
-      login: ログイン
-
-      fail_login: ログインに失敗しました
       fetch_account_info: アカウント情報を取得する
-      created_accont: アカウントを作成しました
-      updated_account: アカウントを更新しました
-      destroyed_account: アカウントを削除しました
-      unable_destroy_account: 自身のアカウントは削除できません
-      created_nominee: 候補者を作成しました
-      updated_nominee: 候補者を更新しました
-      destroyed_nominee: 候補者を削除しました
       account_not_found: アカウント情報が見つかりませんでした
 
       menu:
