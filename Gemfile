@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
-gem 'padrino', '0.12.2'
+gem 'padrino', '0.12.3'
 gem 'padrino-contrib'
 
 # Server requirements

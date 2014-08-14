@@ -7,3 +7,4 @@
 :stylesheet: compass
 :admin_renderer: erb
 :namespace: KajaNomination
+:migration_format: number
