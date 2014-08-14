@@ -6,6 +6,4 @@ Padrino.configure_apps do
 end
 
 Padrino.mount("KajaNomination::Admin", app_file: Padrino.root('admin/app.rb')).to("/admin")
-
-Padrino.mount("KajaNomination::Admin", :app_file => Padrino.root('admin/app.rb')).to("/admin")
 Padrino.mount('KajaNomination::App', app_file: Padrino.root('app/app.rb')).to('/')
