@@ -64,5 +64,9 @@ module KajaNomination
       render 'errors/error'
     end
 
+    after do
+      ActiveRecord::Base.connection.close
+    end
+
   end
 end
