@@ -7,14 +7,8 @@ module KajaNomination
     register CompassInitializer
 
     configure :production do
-      register Padrino::Cache
       register Padrino::Contrib::ExceptionNotifier
       register Padrino::Contrib::Helpers::AssetsCompressor
-      enable :caching
-      set :cache, Padrino::Cache.new(
-        :Memcached,
-        backend: ::Dalli::Client.new( ENV["MEMCACHIER_SERVERS"], { username: ENV["MEMCACHIER_USERNAME"], password: ENV["MEMCACHIER_PASSWORD"] })
-      )
     end
 
     use OmniAuth::Builder do
@@ -24,7 +18,7 @@ module KajaNomination
     end
 
     get :auth, map: '/auth/:provider/callback' do
-      auth    = request.env["omniauth.auth"]
+      auth = request.env["omniauth.auth"]
       user = User.find_by_provider_and_uid(auth["provider"].to_s, auth["uid"].to_s) || User.create_with_omniauth(auth)
       session[:user_id] = user.id
       flash[:notice] = t('app.login_success')

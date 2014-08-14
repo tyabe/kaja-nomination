@@ -25,7 +25,6 @@ gem 'mini_record'
 
 group :production do
   gem 'pg'
-  gem 'dalli'
   gem 'yui-compressor', :require => 'yui/compressor'
 end
 
