@@ -1,19 +1,10 @@
 KajaNomination::App.controllers :nominee do
 
-  before :vote do
-    unless current_user
-      flash[:warn] = t('app.please_login')
-      redirect '/'
-    end
-  end
+  before(:vote) { authenticate! }
   before :new, :create do
-    unless current_user
-      flash[:warn] = t('app.please_login')
-      redirect '/'
-    end
-
-    account = (params[:account] || params[:nominee]&&params[:nominee][:github_id])
-    if account && Nominee.where(archive_id: nil, github_id: account).first
+    authenticate!
+    account = params[:account] || (params[:nominee] && params[:nominee][:github_id])
+    if account &&  Nominee.where(archive_id: nil, github_id: account).first
       flash[:alert] = t('app.already_registered')
       redirect url(:nominee, :show, account)
     end
