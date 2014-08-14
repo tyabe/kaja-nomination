@@ -11,23 +11,23 @@ KajaNomination::App.controllers :nominee do
   end
 
   get :index, '/' do
-    @nominees = Nominee.where(archive_id: nil).all
+    @nominees = Nominee.active.all
     render 'nominees/index'
   end
 
   get :show, '/nominees/:account' do
-    @nominee = Nominee.where(archive_id: nil).find_by_account(params[:account])
+    @nominee = Nominee.active.find_by_account(params[:account])
     render 'nominees/show'
   end
 
   get :vote, '/nominee/:account/vote' do
-    @nominee = Nominee.where(archive_id: nil).find_by_account(params[:account])
+    @nominee = Nominee.active.find_by_account(params[:account])
     @ballot = @nominee.find_or_new(current_user)
     render 'nominees/vote'
   end
 
   post :vote, '/nominee/:account/vote' do
-    @nominee = Nominee.where(archive_id: nil).find_by_account(params[:account])
+    @nominee = Nominee.active.find_by_account(params[:account])
     @ballot = @nominee.ballots.new(params[:ballot].merge(user: current_user))
     if @ballot.save
       flash[:notice] = t('app.voted')
@@ -38,7 +38,7 @@ KajaNomination::App.controllers :nominee do
   end
 
   put :vote, '/nominee/:account/vote' do
-    @nominee = Nominee.where(archive_id: nil).find_by_account(params[:account])
+    @nominee = Nominee.active.find_by_account(params[:account])
     @ballot = @nominee.ballots.find_by_user_id(current_user)
     if @ballot.update_attributes(params[:ballot])
       flash[:notice] = t('app.updated_comment')

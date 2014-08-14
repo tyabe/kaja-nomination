@@ -12,6 +12,8 @@ class Nominee < ActiveRecord::Base
   has_many :ballots
   belongs_to :archive
 
+  scope :active, -> { where(archive_id: nil) }
+
   class << self
 
     def search(account, provider=:github)
