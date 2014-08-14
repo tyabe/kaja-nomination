@@ -35,6 +35,7 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'rack-test'
+  gem 'rack-test', :require => "rack/test"
   gem 'rspec-padrino'
+  gem "database_cleaner", "1.0.1"
 end

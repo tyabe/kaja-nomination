@@ -26,6 +26,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.2.19)
     daemons (1.1.9)
+    database_cleaner (1.0.1)
     diff-lcs (1.2.5)
     equalizer (0.0.9)
     erubis (2.7.0)
@@ -197,6 +198,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   compass
+  database_cleaner (= 1.0.1)
   erubis
   mini_record
   octokit
