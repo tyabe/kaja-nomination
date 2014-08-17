@@ -6,7 +6,6 @@ bin/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
-public/stylesheets/application.css
 db/*.db
 .bundle
 
