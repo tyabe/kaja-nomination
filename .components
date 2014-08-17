@@ -4,7 +4,7 @@
 :mock: none
 :script: jquery
 :renderer: erb
-:stylesheet: compass
+:stylesheet: none
 :admin_renderer: erb
 :namespace: KajaNomination
 :migration_format: number

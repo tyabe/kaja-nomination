@@ -4,12 +4,6 @@ module KajaNomination
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
-    register CompassInitializer
-
-    configure :production do
-      register Padrino::Contrib::ExceptionNotifier
-      register Padrino::Contrib::Helpers::AssetsCompressor
-    end
 
     use OmniAuth::Builder do
       provider :github,   ENV['GITHUB_KEY']   || Oauth.github.key,   ENV['GITHUB_SECRET']    || Oauth.github.secret
