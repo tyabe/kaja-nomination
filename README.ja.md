@@ -2,6 +2,8 @@
 
 RubyKajaの投票用WEBアプリケーションです
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 ## 動かし方
 ```
 $ git clone git@github.com:tyabe/kaja-nomination.git
