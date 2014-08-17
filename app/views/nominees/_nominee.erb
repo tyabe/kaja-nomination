@@ -1,21 +1,25 @@
-<h2>
-  <%= link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
-  <%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %>
-</h2>
-<p class="lead"><%= simple_format(h nominee.description).html_safe %></p>
-<div style="font-size: 16px;">
-  <ul class="unstyled">
-    <% if nominee.github_id.present? -%>
-      <li>
-        <i class="icon-github"></i>
-        <%= link_to nominee.github_id, "https://github.com/#{nominee.github_id}", target: "_blank" %>
-      </li>
-    <% end -%>
-    <% if nominee.twitter_id.present? -%>
-      <li>
-        <i class="icon-twitter"></i>
-        <%= link_to nominee.twitter_id, "https://twitter.com/#{nominee.twitter_id}", target: "_blank" %>
-      </li>
-    <% end -%>
-  </ul>
+<div class="page-header">
+  <h2>
+    <%= image_tag nominee.image_url, alt: nominee.name, title: nominee.name, width: 80 %>
+    <%= nominee.name %>
+  </h2>
 </div>
+<ul class="list-inline">
+  <% if nominee.github_id.present? -%>
+    <li>
+      <% link_to "https://github.com/#{nominee.github_id}", target: "_blank", class: 'btn btn-default btn-lg' do %>
+        <i class="fa fa-github-square"></i>
+        <%= nominee.github_id %>
+      <% end %>
+    </li>
+  <% end -%>
+  <% if nominee.twitter_id.present? -%>
+    <li>
+      <% link_to"https://twitter.com/#{nominee.twitter_id}", target: "_blank", class: 'btn btn-default btn-lg' do %>
+        <i class="fa fa-twitter-square"></i>
+        <%= nominee.twitter_id %>
+      <% end %>
+    </li>
+  <% end -%>
+</ul>
+<p class="lead"><%= simple_format(h nominee.description).html_safe %></p>

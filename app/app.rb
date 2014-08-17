@@ -47,7 +47,7 @@ module KajaNomination
 
     def authenticate!
       return if logged_in?
-      flash[:warn] = t('app.please_login')
+      flash[:warning] = t('app.please_login')
       redirect '/'
     end
 

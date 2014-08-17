@@ -3,64 +3,61 @@
 </div>
 
 <% if @nominee.name.blank? -%>
-  <% form_tag url(:nominee, :new), method: 'get', class: 'form-horizontal' do %>
-    <fieldset class='control-group'>
-      <div class='controls'>
-        <%= text_field_tag 'account', value: params[:account], id: 'account', class: 'input-xlarge', placeholder: t('app.input_github_account') %>
-        <%= submit_tag %>
-      </div>
-    </fieldset>
+  <% form_tag url(:nominee, :new), method: 'get' do %>
+    <div class="form-group">
+      <%= text_field_tag 'account', value: params[:account], id: 'account', class: 'form-control', placeholder: t('app.input_github_account') %>
+    </div>
+    <%= submit_tag class: 'btn btn-primary' %>
   <% end %>
 <% else -%>
-  <% form_for :nominee, url(:nominee, :create), :class => 'form-horizontal' do |f| %>
+  <% form_for :nominee, url(:nominee, :create), class: 'form-horizontal' do |f| %>
     <% if @nominee.image_url.present? -%>
-      <fieldset class='control-group'>
-        <div class='controls'>
+      <div class="form-group">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11">
           <%= image_tag @nominee.image_url, alt: @nominee.name, title: @nominee.name, width: 80 %>
         </div>
-      </fieldset>
+      </div>
     <% end -%>
     <% error = @nominee.errors.include?(:github_id) %>
-    <fieldset class='control-group <%= error ? 'error' : ''%>'>
-      <%= f.label :github_id, :class => 'control-label' %>
-      <div class='controls'>
-        <%= f.hidden_field :github_id %>
-        <%= f.text_field :github_id, :class => 'input-xlarge input-with-feedback', disabled: :disabled %>
+    <div class="form-group<%= error ? ' has-error has-feedback' : ''%>">
+      <%= f.hidden_field :github_id %>
+      <%= f.label :github_id, class: 'control-label col-sm-1' %>
+      <div class="col-sm-11">
+        <%= f.text_field :github_id, class: 'form-control', disabled: :disabled %>
       </div>
-    </fieldset>
-    <% error = @nominee.errors.include?(:name) %>
-    <fieldset class='control-group <%= error ? 'error' : ''%>'>
-      <%= f.label :name, :class => 'control-label' %>
-      <div class='controls'>
-        <%= f.hidden_field :name %>
-        <%= f.text_field :name, :class => 'input-xlarge input-with-feedback', disabled: :disabled %>
-      </div>
-    </fieldset>
-    <% error = @nominee.errors.include?(:image_url) %>
-    <fieldset class='control-group <%= error ? 'error' : ''%>'>
-      <%= f.label :image_url, :class => 'control-label' %>
-      <div class='controls'>
-        <%= f.hidden_field :image_url %>
-        <%= f.text_field :image_url, :class => 'input-xlarge input-with-feedback', disabled: :disabled %>
-      </div>
-    </fieldset>
-    <% error = @nominee.errors.include?(:description) %>
-    <fieldset class='control-group <%= error ? 'error' : ''%>'>
-      <%= f.label :description, :class => 'control-label' %>
-      <div class='controls'>
-        <%= f.text_area :description, :class => 'input-xxlarge input-with-feedback', rows: 3 %>
-      </div>
-    </fieldset>
-    <% error = @nominee.errors.include?(:twitter_id) %>
-    <fieldset class='control-group <%= error ? 'error' : ''%>'>
-      <%= f.label :twitter_id, :class => 'control-label' %>
-      <div class='controls'>
-        <%= f.text_field :twitter_id, :class => 'input-xlarge input-with-feedback' %>
-      </div>
-    </fieldset>
-
-    <div class="form-actions">
-      <%= f.submit t('app.recommend'), class: 'btn btn-large btn-primary' %>
     </div>
+    <% error = @nominee.errors.include?(:name) %>
+    <div class="form-group<%= error ? ' has-error has-feedback' : ''%>">
+      <%= f.hidden_field :name %>
+      <%= f.label :name, class: 'control-label col-sm-1' %>
+      <div class='col-sm-11'>
+        <%= f.text_field :name, class: 'form-control', disabled: :disabled %>
+      </div>
+    </div>
+    <% error = @nominee.errors.include?(:image_url) %>
+    <div class="form-group<%= error ? ' has-error has-feedback' : ''%>">
+      <%= f.hidden_field :image_url %>
+      <%= f.label :image_url, class: 'control-label col-sm-1' %>
+      <div class='col-sm-11'>
+        <%= f.text_field :image_url, class: 'form-control', disabled: :disabled %>
+      </div>
+    </div>
+    <% error = @nominee.errors.include?(:description) %>
+    <div class="form-group<%= error ? ' has-error has-feedback' : ''%>">
+      <%= f.label :description, class: 'control-label col-sm-1' %>
+      <div class='col-sm-11'>
+        <%= f.text_area :description, class: 'form-control', rows: 3 %>
+      </div>
+    </div>
+    <% error = @nominee.errors.include?(:twitter_id) %>
+    <div class="form-group<%= error ? ' has-error has-feedback' : ''%>">
+      <%= f.label :twitter_id, class: 'control-label col-sm-1' %>
+      <div class='col-sm-11'>
+        <%= f.text_field :twitter_id, class: 'form-control' %>
+      </div>
+    </div>
+
+    <%= f.submit t('app.recommend'), class: 'btn btn-lg btn-primary' %>
   <% end %>
 <% end -%>

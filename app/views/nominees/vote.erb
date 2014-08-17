@@ -1,13 +1,14 @@
-<div class="page-header">
-  <%= partial 'nominees/nominee', object: @nominee %>
-</div>
+<%= partial 'nominees/nominee', object: @nominee %>
 
-<% form_for :ballot, url(:nominee, :vote, account: @nominee.account), class: :well, method: (@ballot.new_record? ? :post : :put) do |f| %>
-  <%= f.label :comment, caption: "#{t('models.ballot.attributes.comment')}#{f.error_message_on(:comment)}" %>
-  <%= f.text_area :comment, class: :span8, rows: 8 %>
-
-  <div>
-    <%= f.submit t('app.cancel'), onclick: "window.location='#{url(:nominee, :show, @nominee.account)}';return false", class: :btn %>
-    <%= f.submit t('app.save'), class: "btn btn-primary btn-large" %>
+<% form_for @ballot, url(:nominee, :vote, account: @nominee.account), class: :well, method: (@ballot.new_record? ? :post : :put) do |f| %>
+  <div class="form-group">
+    <div class="<%= 'alert alert-danger' if error_messages_for(@ballot).present? %>">
+      <%= f.label :comment, caption: t('models.ballot.attributes.comment') %>
+      <%= f.error_message_on(:comment).html_safe %>
+    </div>
+    <%= f.text_area :comment, class: 'form-control', rows: 8 %>
   </div>
+
+  <%= f.submit t('app.cancel'), onclick: "window.location='#{url(:nominee, :show, @nominee.account)}';return false", class: 'btn btn-default' %>
+  <%= f.submit t('app.save'), class: "btn btn-primary btn-lg" %>
 <% end %>

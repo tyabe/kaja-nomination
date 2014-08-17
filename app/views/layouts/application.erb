@@ -2,53 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title><%= title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= Setting.site_keywords %>">
-
-    <%= stylesheet_link_tag 'application', 'bootstrap.min', 'font-awesome' %>
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <%= stylesheet_link_tag 'bootstrap-responsive.min' %>
-
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'bootstrap.min', 'font-awesome.min', 'application' %>
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <link rel="shortcut icon" href="/favicon.ico">
   </head>
 
   <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/"><%= site_title %></a>
-          <div class="btn-group pull-right">
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><%= site_title %></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
             <% if current_user -%>
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="icon-<%= current_user.provider %>"></i> <%= current_user.screen_name %>
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="/logout"><i class="icon-off"></i> <%= t('app.logout') %></a></li>
-              </ul>
+              <li>
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-<%= current_user.provider %>-square"></i> <%= current_user.screen_name %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="/logout"><i class="icon-off"></i> <%= t('app.logout') %></a></li>
+                </ul>
+              </li>
             <% else -%>
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <%= t('app.login') %>
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                 <a href="/auth/github"><i class="icon-github"></i> github</a>
-                 <a href="/auth/twitter"><i class="icon-twitter"></i> twitter</a>
-                 <a href="/auth/facebook"><i class="icon-facebook"></i> facebook</a>
-              </ul>
+              <li class="dropdown">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  <%= t('app.login') %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="/auth/github"><i class="fa fa-github-square"></i> github</a></li>
+                  <li><a href="/auth/twitter"><i class="fa fa-twitter-square"></i> twitter</a></li>
+                  <li><a href="/auth/facebook"><i class="fa fa-facebook-square"></i> facebook</a></li>
+                </ul>
+              </li>
             <% end -%>
-          </div>
+          </ul>
         </div>
       </div>
     </div>
@@ -56,8 +60,8 @@
     <div class="container">
       <% flash.each do |name, msg| -%>
         <% if msg.is_a?(String) && msg.present? -%>
-          <div class="alert alert-block <%= alert_message name %>" data-alert="alert" %>
-            <button type="button" class="close" data-dismiss="alert"><icon class="icon-remove-sign"></i></button>
+          <div class="<%= alert_class name %>" data-alert="alert" %>
+            <button type="button" class="close" data-dismiss="alert"><icon class="glyphicon glyphicon-remove-sign"></i></button>
             <p><%= msg %></p>
           </div>
         <% end -%>

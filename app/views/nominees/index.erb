@@ -1,39 +1,43 @@
-<div class="hero-unit">
+<div class="jumbotron">
   <h1><%= site_title %></h1>
   <p><%== Setting.site_description %></p>
 </div>
 
-<div class="row">
-  <div class="span12">
-    <p><%== Setting.message %></p>
-
-    <%= link_to t('app.kaja_recommend'), url(:nominee, :new), class: 'btn btn-large btn-info' %>
-
-    <% if @nominees.present? -%>
-      <h2><%= t('app.list_of_nominees') %></h2>
-      <table class="table table-striped">
-        <tbody>
-          <% @nominees.each do |nominee| -%>
-            <tr>
-              <td>
-                <%= link_to image_tag(nominee.image_url, alt: nominee.name, title: nominee.name, width: 80), url(:nominee, :show, account: nominee.account) %>
-                <p><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></p>
-                <div class="span2">
-                  <%= link_to "#{t('app.vote')} »", url(:nominee, :vote, nominee.account), class: :btn %>
-                </div>
-              </td>
-              <td>
-                <p><%= nominee.description %></p>
-                <h4><%= t('app.supporters') %></h4>
-                <% nominee.ballots.each do | ballot | -%>
-                  <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
-                    "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
-                <% end -%>
-              </td>
-            </tr>
-          <% end -%>
-        </tbody>
-      </table>
-    <% end -%>
-  </div>
+<div>
+  <p><%== Setting.message %></p>
+  <% link_to url(:nominee, :new), class: 'btn btn-lg btn-info' do %>
+    <span class="fa fa-gift"></span>
+    <%= t('app.kaja_recommend') %>
+  <% end %>
 </div>
+
+<% if @nominees.present? -%>
+  <div class="page-header">
+    <h2><%= t('app.list_of_nominees') %></h2>
+  </div>
+  <% @nominees.each do |nominee| -%>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2><%= link_to nominee.name, url(:nominee, :show, account: nominee.account) %></h2>
+        <div class="row">
+          <div class="col-md-1">
+            <% link_to url(:nominee, :show, account: nominee.account), class: 'pull-left' do %>
+              <%= image_tag nominee.image_url, alt: nominee.name, title: nominee.name, width: 80 %>
+            <% end %>
+          </div>
+          <div class="col-md-11">
+            <p><%= nominee.description %></p>
+            <h4><%= t('app.supporters') %></h4>
+            <% nominee.ballots.each do | ballot | -%>
+              <%= link_to image_tag(ballot.user.image_url, alt: ballot.user.screen_name, title: ballot.user.screen_name, width: 28),
+                "https://github.com/#{ballot.user.screen_name}", target: "_blank" %>
+              <% end -%>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= link_to t('app.vote'), url(:nominee, :vote, nominee.account), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end -%>
+<% end -%>

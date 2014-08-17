@@ -10,13 +10,13 @@ module KajaNomination
         [Setting.site_title, Setting.community].join(" of ")
       end
 
-      def alert_message(name)
-        "alert-" <<
+      def alert_class(name)
+        "alert alert-" <<
           case name.to_sym
           when :notice
             "info"
           when :alert
-            "error"
+            "danger"
           else
             name.to_s
           end

@@ -1,22 +1,14 @@
-<div class="page-header">
-  <%= partial 'nominees/nominee', object: @nominee %>
-  <p><%= link_to "#{t('app.vote')} »", url(:nominee, :vote, @nominee.account), class: "btn btn-primary btn-large" %></p>
-</div>
+<%= partial 'nominees/nominee', object: @nominee %>
+<p><%= link_to t('app.vote'), url(:nominee, :vote, @nominee.account), class: "btn btn-primary btn-lg" %></p>
 
-<div>
-  <div class="row">
-    <div class="span12">
-    <ul class="unstyled">
-    <% @nominee.ballots.each do | ballot | -%>
-      <li>
-        <a href="https://github.com/<%= ballot.user.screen_name %>" target="_blank">
-          <%= image_tag ballot.user.image_url, alt: ballot.user.name, title: ballot.user.name, width: 28 %>
-          <%= ballot.user.screen_name %>
-        </a>
-        <p><%= ballot.comment %></p>
-      </li>
-    <% end -%>
-    </ul>
-  </div>
-  </div>
+<div class="list-group">
+  <% @nominee.ballots.each do | ballot | -%>
+    <a href="https://github.com/<%= ballot.user.screen_name %>" target="_blank" class="list-group-item">
+      <h4 class="list-group-item-heading">
+        <%= image_tag ballot.user.image_url, alt: ballot.user.name, title: ballot.user.name, width: 28 %>
+        <%= ballot.user.screen_name %>
+      </h4>
+      <p class="list-group-item-text"><%= ballot.comment %></p>
+    </a>
+  <% end -%>
 </div>
