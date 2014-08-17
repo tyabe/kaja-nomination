@@ -12,7 +12,6 @@ $ padrino s
 ```
 
 ## In production environment
-* Use Dalli
 * Use Github OAuth settings
 * Use Twitter OAuth settings and access token
 * Use Facebook OAuth settings
