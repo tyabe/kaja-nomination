@@ -28,5 +28,9 @@ module KajaNomination
     error(403) { @title = "Error 403"; render('errors/403', layout: :error) }
     error(404) { @title = "Error 404"; render('errors/404', layout: :error) }
     error(500) { @title = "Error 500"; render('errors/500', layout: :error) }
+
+    after do
+      ActiveRecord::Base.connection.close
+    end
   end
 end
